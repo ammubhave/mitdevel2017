@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'openshift.views.home', name='home'),
+    url(r'^members$', 'openshift.views.members', name='members'),
     
     url(r'^accounts/login$', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout$', 'django.contrib.auth.views.logout'),

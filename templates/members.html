@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}MIT Developers - Class of 2017 - Members{% endblock %}
+
+{% block head_extra %}
+
+<style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+   
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 80px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 100px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+     }
+
+    </style>
+
+{% endblock %}
+
+{% block main_content %}
+
+ <div class="container">
+      <div class="jumbotron">
+        <h1>Members</h1>
+        <p class="lead"></p>
+      </div>
+ <br />
+     <div class="row">
+        {% for user in users %}
+        <div class="span4">
+          <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+          <p>Skills: Blah blah blah</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        {% endfor %}
+     </div>
+</div>
+
+{% endblock %}
