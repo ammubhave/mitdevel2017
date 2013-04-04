@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}MIT Developers - Class of 2017 - Home{% endblock %}
+
+{% block head_extra %}
+<style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+</style>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <div class="jumbotron">          
+            
+                <h1>MIT Developers</h1>
+                <h2>Massachusetts Institute of Technology</h2>
+                <h4>Class of 2017</h4>
+    </div>
+      
+      <hr />
+
+      <footer>
+        <p>{% include "footer.html" %}</p>
+      </footer>
+
+</div>
+
+{% endblock %}
