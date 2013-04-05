@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block main_content %}
+
+
+
+    <div class="container-fluid">
+    <h2>User Profile</h2><br />
+      <div class="row-fluid">
+        <div class="span3">
+          <p class="text-info">{{ user.email }}</p>
+        </div><!--/span-->
+        <div class="span9">
+           <ul class="nav nav-pills nav-stacked">
+            <li><a href="/accounts/password_change">Change Password</a></li>
+           </ul>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr />
+
+      <footer>
+        <p>&copy; </p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+{% endblock %}

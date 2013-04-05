@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^members$', 'openshift.views.members', name='members'),
     
     url(r'^accounts/login$', 'django.contrib.auth.views.login'),
+    url(r'^accounts/profile/$', 'openshift.views.profile'),
+    url(r'^accounts/profile$', 'openshift.views.profile'),
     url(r'^accounts/logout$', 'django.contrib.auth.views.logout'),
     url(r'^accounts/password_reset$', 'django.contrib.auth.views.password_reset'),
     url(r'^accounts/password_reset_confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})$', 'django.contrib.auth.views.password_reset_confirm'),
