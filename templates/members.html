@@ -48,29 +48,15 @@
         {% for user in users %}
         <div class="span4">
           <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-          <p>Skills: </p>
-                      <div id="modal{{ user.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal{{ user.id }}Label" aria-hidden="true">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="modal{{ user.id }}Label">{{ user.first_name }} {{ user.last_name }}</h3>
-            </div>
-            <div class="modal-body">
-                <div style="background-color: lightgreen; height: 187px; width: 382px;background-image: url(http://t2.gstatic.com/images?q=tbn:ANd9GcQn5Ql0tuupbkEoRHvsXd4sEWHEIvFRovO9AQDv_Bm_ux_826K45A);background-repeat: no-repeat;background-size: 100% auto; color: white">
+
+                <div style="background-color: lightgreen; height: 187px; width: 370px;background-image: url(http://t2.gstatic.com/images?q=tbn:ANd9GcQn5Ql0tuupbkEoRHvsXd4sEWHEIvFRovO9AQDv_Bm_ux_826K45A);background-repeat: no-repeat;background-size: 100% auto; color: white">
                     <div style="position: relative; top: 30px; left: 30px; font-family: 'Times New Roman'; font-size: 25px;">{{ user.first_name }} {{ user.last_name }}</div>
                     <div style="position: relative; top: 35px; left: 30px; ">MIT Developers</div>
                     <div style="position: relative; top: 34px; left: 30px; ">Class of 2017</div>
                     
-                    <div style="position: relative; top: 50px; margin-left: 30px; margin-right: 30px;">My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!</div>
+                    <div style="position: relative; top: 50px; margin-left: 30px; margin-right: 30px;">My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!My tagline!</div>
                 </div>
-            </div>
-            <div class="modal-footer">
-            <button class="btn">Print</button>&nbsp;<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-            </div>
-          
-          <p><a class="btn" data-target="#modal{{ user.id }}" data-toggle="modal" role="button">View card &raquo;</a></p>
-          
-
+           
 
         </div>
         {% endfor %}
