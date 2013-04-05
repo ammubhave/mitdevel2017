@@ -1,4 +1,4 @@
-MIT Developers Group - Class of 2017
+MIT Developers Group - Class of 2017 
 ============
 
 This repository is where all the website related stuff can go on.
