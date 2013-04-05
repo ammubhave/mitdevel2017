@@ -12,6 +12,7 @@ Getting Started
      
        
        git clone https://github.com/<your username>/mitdevel2017.git openshift
+       git remote add upstream https://github.com/ammubhave/mitdevel2017.git
 
 
 3 A directory 'openshift' will be created at your machine. You can edit it, add new files, etc.etc. Do not rename this directory else the code won't work.
@@ -21,11 +22,16 @@ Getting Started
 
        git add .
        git commit -m "<any message describing your change>"
-       git push
+       git push origin master
      
      
 5 Once the changes are pushed go to the online github repository and issue a pull request using the 'Pull request' button on the top right and continuing further. A pull request will be issued which I can later accept and the code changes will be reflected.
 
+Fetching updates in the original repo with your local repo
+=============
+
+       git fetch upstream
+       git merge upstream/master
 
 Running the website at your machine
 =============
