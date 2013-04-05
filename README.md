@@ -24,7 +24,7 @@ Getting Started
        git push
      
      
-5 Once the changes are pushed go to the online github repository and issue a pull request using the 'Pull request' button on the top right and continuing further. A pull request will be issued which I can later accept and the code changes will be reflectred.
+5 Once the changes are pushed go to the online github repository and issue a pull request using the 'Pull request' button on the top right and continuing further. A pull request will be issued which I can later accept and the code changes will be reflected.
 
 
 Running the website at your machine
