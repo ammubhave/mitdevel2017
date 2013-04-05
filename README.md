@@ -30,6 +30,8 @@ Getting Started
 Running the website at your machine
 =============
 
+Make sure that the directory is called openshift, or else it will not work locally.
+
 You can run the website at your local machine too. Get into the root of the repository where the manage.py file resides and type in the shell:
 
        python manage.py runserver
