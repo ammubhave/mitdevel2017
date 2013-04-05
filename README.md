@@ -11,10 +11,10 @@ Getting Started
 2 You will need git installed at your machine. You will get a fork of this repository in your account. Clone it into your local machine by typing
      
        
-       git clone https://github.com/<your username>/mitdevel2017.git
+       git clone https://github.com/<your username>/mitdevel2017.git openshift
 
 
-3 A directory 'mitdevel2017' will be created at your machine. You can edit it, add new files, etc.etc.
+3 A directory 'openshift' will be created at your machine. You can edit it, add new files, etc.etc. Do not rename this directory else the code won't work.
 
 4 Once done editing you can push the changes on your Github account by the commands (you need to be in the root of the repository):
 
