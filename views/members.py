@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 #from openshift.models import UserProfile, SkillEntry
 
 def members(request):
-    users = User.objects.all()
+    users = User.objects.all().order_by('first_name')
     #for user in users:
       #  skills = []
      #   SkillEntry.objects.filter(user=user)
