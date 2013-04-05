@@ -35,3 +35,12 @@ You can run the website at your local machine too. Get into the root of the repo
        python manage.py runserver
        
 Now open the web browser and goto http://localhost:8000/ and there you have the website running.
+
+Creating super user
+=============
+Your local Django site will need a super user. Goto the root of the repository and execute
+
+       python manage.py createsuperuser
+       
+Enter details and it will create a local super user.
+Now goto http://localhost:8000/admin/ and enter the details and you will log into admin.
