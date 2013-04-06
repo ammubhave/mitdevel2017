@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from openshift.models import SkillEntry, InterestEntry
+from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
 
 @login_required
 def profile(request): 
     skills = SkillEntry.objects.filter(user = request.user.id).order_by('proficiency')
     interests = InterestEntry.objects.filter(user = request.user.id).order_by('level')
+    websites = WebsiteEntry.objects.filter(user = request.user.id)
     for interest in interests:
         interest.label_class = 'default'
         if interest.level == InterestEntry.NOT_MUCH_INTERESTED:
@@ -34,7 +35,18 @@ def profile(request):
         elif skill.proficiency == SkillEntry.ADVANCED:
             skill.proficiency_text = 'Advanced'
             skill.label_class = 'important'
-    return render(request, 'profile.html', { 'skills': skills, 'interests': interests } )
+
+
+    for website in websites:
+        website.label_class = 'default'
+        if website.classification == WebsiteEntry.PERSONAL:
+            website.classification_text = 'Personal'
+            website.label_class = 'info'
+        elif website.classification == WebsiteEntry.WORK:
+            website.classification_text = 'Work'
+            website.label_class = 'success'
+
+    return render(request, 'profile.html', { 'skills': skills, 'interests': interests, 'websites': websites } )
     
 @csrf_exempt
 @login_required
@@ -79,5 +91,28 @@ def remove_interest(request):
     
     interest = get_object_or_404(InterestEntry.objects.filter(interest_name = interest_name, user = request.user))
     interest.delete()
+    
+    return render(request, 'profile_add_skill.html', { 'success': True } )
+
+@csrf_exempt
+@login_required
+def add_website(request):
+    website_url =  str(request.POST['website_url']).lower()
+    classification = int(request.POST['classification'])
+    
+    success = False
+    if len(WebsiteEntry.objects.filter(website_url = website_url, user = request.user)) == 0:
+        se = WebsiteEntry(website_url = website_url, classification = classification, user = request.user)
+        se.save()
+        success = True
+    return render(request, 'profile_add_skill.html', { 'success': success } )
+    
+@csrf_exempt
+@login_required
+def remove_website(request):
+    website_url = str(request.POST['website_url']).lower()
+    
+    website = get_object_or_404(WebsiteEntry.objects.filter(website_url = website_url, user = request.user))
+    website.delete()
     
     return render(request, 'profile_add_skill.html', { 'success': True } )

@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^accounts/profile/skills/remove$', 'openshift.views.remove_skill', name='remove_skill'),
     url(r'^accounts/profile/interests/add$', 'openshift.views.add_interest', name='add_interest'),
     url(r'^accounts/profile/interests/remove$', 'openshift.views.remove_interest', name='remove_interest'),    
+    url(r'^accounts/profile/websites/add$', 'openshift.views.add_website', name='add_website'),
+    url(r'^accounts/profile/websites/remove$', 'openshift.views.remove_website', name='remove_website'),    
     
     # url(r'^openshift/', include('openshift.foo.urls')),
 

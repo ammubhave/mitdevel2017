@@ -176,8 +176,84 @@
                 }
             </script>
            </div>
+
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Personal Website</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for website in websites %}
+                <span title="{{ website.website_url|title }}: {{ website.classification_text }}" class="label skill label-{{ website.label_class }}"><span>{{ website.website_url }}</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>
+            {% endfor %}           
+            <span id="addwebsite" title="Add website" class="label label-default" style="line-height: 25px;">&nbsp;&nbsp;Add website&nbsp;&nbsp;
+            </span>
+            <script>
+                $('#addwebsite').click( function () {
+                    $('#addwebsite').before(
+                        $('<span>').attr('class', 'label skill')
+                            .append('<input type="text" placeholder="Website" style="margin-bottom:0"></input>') 
+                            .append($('<select style="margin-bottom:0">')
+                                .append('<option value="1">Personal</option>')
+                                .append('<option value="2">Work</option>')
+                            )
+                            .append('<a class="btn btn-primary" onclick="add_website(this)" href="#"><i class="icon-ok icon-white"></i></a>')
+                            .append('<a class="btn" href="#" onclick="remove_website_new(this)">&times;</a>')
+                            
+                        
+                    );
+                });
+                function add_website(ele)
+                {
+                    var website_url = $(ele).parent().children(0)
+                    var classification = $($(ele).parent().children().eq(1))
+                    var label_class = 'default';
+                    switch (classification.val())
+                    {
+                        case "1":
+                            label_class = "info";
+                            break;
+                        case "2":
+                            label_class = "success";
+                            break;
+                    }
+                    
+                    $(ele).parent().after(
+                        $('<span title="' + website_url.val() + ': ' + classification.val() + '" class="label skill label-' + label_class + '"><span>' + website_url.val() + '</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>')
+                    );
+                    
+                    jQuery.ajax({
+                        url: '/accounts/profile/websites/add',
+                        type: 'POST',
+                        data: {'website_url': website_url.val(),
+                               'classification': classification.val() },
+                        dataType: 'json'                  
+                    });
+                    
+                    $(ele).parent().remove();
+                }
+                function remove_website(ele)
+                {
+                    var website_url = $(ele).parent().children(0).html()
+                    jQuery.ajax({
+                        url: '/accounts/profile/websites/remove',
+                        type: 'POST',
+                        data: {'website_url': website_url },
+                        dataType: 'json'                  
+                    });
+                    $(ele).parent().remove();
+                }
+                function remove_website_new(ele)
+                {
+                    $(ele).parent().remove();
+                }
+            </script>
+           </div>
            
            
+
+
+
+
+
+
+
            
            <ul class="nav nav-pills nav-stacked">
             <li><a href="/accounts/password_change">Change Password</a></li>
