@@ -30,12 +30,16 @@
            <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills</a></li></ul>
            <div class="well" id="skills-list">
             {% for skill in skills %}
-                <a href="/members?filter={{skill.skill_name|urlencode}}" title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}">{{ skill.skill_name|title }}</a>
+                <a href="/members?filter={{skill.skill_name|urlencode}}" title="{{ skill.skill_name|title }}: {{ skill.proficiency_text }}" class="label skill label-{{ skill.label_class }}">{{ skill.skill_name|title }}</a>
             {% endfor %}  
-           </div>        
-           <ul class="nav nav-pills nav-stacked">
-            <li>Under development...</li>
-           </ul>
+           </div>    
+           
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Interests</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for interest in interests %}
+                <a href="/members?filter_interest={{interest.interest_name|urlencode}}" title="{{ interest.interest_name|title }}" class="label skill label-{{ interest.label_class }}">{{ interest.interest_name|title }}</a>
+            {% endfor %}  
+           </div>    
         </div><!--/span-->
       </div><!--/row-->
 

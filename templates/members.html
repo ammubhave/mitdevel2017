@@ -49,9 +49,20 @@
         <p class="lead"></p>
       </div>
       <div>
-      Filter by: 
+      Filter by Skill: 
+      {% if pfilter != None %}
+       <span title="{{ pfilter.skill_name|title }}" class="label skill label-success">{{ pfilter.skill_name|title }}</span>
+      {% endif %}
       {% for skill in skills %}
        <span title="{{ skill|title }}" class="label skill label-info"><a href="members?filter={{ skill|urlencode}}" style="color: white;text-decoration:none">{{ skill|title }}</a></span>
+      {% endfor %}<br /><br />
+      
+      Filter by Interest: 
+      {% if pfilter_interest != None %}
+       <span title="{{ pfilter_interest.interest_name|title }}" class="label skill label-success">{{ pfilter_interest.interest_name|title }}</span>
+      {% endif %}
+      {% for interest in interests %}
+       <span title="{{ interest|title }}" class="label skill label-info"><a href="members?filter_interest={{ interest|urlencode}}" style="color: white;text-decoration:none">{{ interest|title }}</a></span>
       {% endfor %}
       </div>
  <br />

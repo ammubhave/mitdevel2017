@@ -26,3 +26,21 @@ class SkillEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.skill_name, self.proficiency)
+
+  
+class InterestEntry(models.Model):
+    user = models.ForeignKey(User)
+    interest_name = models.TextField()
+    
+    NOT_MUCH_INTERESTED = 1
+    INTERESTED = 2
+    VERY_INTERESTED = 3
+    LEVEL_CHOICES = (
+        (NOT_MUCH_INTERESTED, 'Not much Interested'),
+        (INTERESTED, 'Interested'),
+        (VERY_INTERESTED, 'Very Interested'),
+    )
+    level = models.IntegerField(choices=LEVEL_CHOICES)
+    
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.user.username, self.interest_name, self.level)
