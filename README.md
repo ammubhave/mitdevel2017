@@ -1,7 +1,8 @@
-MIT Developers Group - Class of 2017
+MIT Developers Group - Class of 2017 
 ============
 
 This repository is where all the website related stuff can go on.
+If you face any problem at any point of time, shoot an email at mit@amolbhave.in
 
 Getting Started
 ============
