@@ -41,6 +41,13 @@
                 <a href="/members?filter_interest={{interest.interest_name|urlencode}}" title="{{ interest.interest_name|title }}" class="label skill label-{{ interest.label_class }}">{{ interest.interest_name|title }}</a>
             {% endfor %}  
            </div>    
+
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Websites</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for website in websites %}
+                <a href="/members?filter_website={{website.website_url|urlencode}}" title="{{ website.website_url|title }}" class="label skill label-{{ website.label_class }}">{{ website.website_url }}</a>
+            {% endfor %}  
+           </div>    
         </div><!--/span-->
       </div><!--/row-->
 

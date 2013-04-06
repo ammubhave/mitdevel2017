@@ -48,6 +48,15 @@ class InterestEntry(models.Model):
 class WebsiteEntry(models.Model):
     user = models.ForeignKey(User)
     website_url = models.TextField()
+
+    WORK = 1
+    PERSONAL = 2
+
+    CLASSIFICATION_CHOICES = (
+        (WORK, 'Work'),
+        (PERSONAL, 'Personal'),
+    )
+    classification = models.IntegerField(choices=CLASSIFICATION_CHOICES)
     
     def __unicode__(self):
-        return "{0} - {1}".format(self.user.username, self.website_url)
+        return "{0} - {1} - {2}".format(self.user.username, self.website_url, self.classification)
