@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'openshift.views.home', name='home'),
     url(r'^members$', 'openshift.views.members', name='members'),
+    url(r'^members/(?P<username>[0-9A-Za-z]+)$', 'openshift.views.members_profile', name='members_profile'),
     
     url(r'^accounts/login$', 'django.contrib.auth.views.login'),
     url(r'^accounts/profile/$', 'openshift.views.profile'),

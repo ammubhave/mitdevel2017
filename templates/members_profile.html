@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}MIT Developers - Class of 2017 - Profile - {{ user.first_name }} {{ user.last_name }}{% endblock %}
+
+{% block main_content %}
+
+
+
+    <div class="container-fluid">
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2><br />
+      <div class="row-fluid">
+        <div class="span3">
+          <p class="text-info">
+            <a href="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" target="_blank"><img src="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" alt="{{ user.first_name }} {{user.last_name }}" /></a>
+          </p>
+        </div><!--/span-->
+        <div class="span9">
+           <ul class="nav nav-pills nav-stacked">
+            <li>Under development...</li>
+           </ul>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr />
+
+      <footer>
+        <p>&copy; </p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+{% endblock %}

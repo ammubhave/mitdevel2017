@@ -48,7 +48,7 @@
         {% for user in users %}
         <div class="span4">
           <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-          <a href="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" target="_blank"><img src="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" alt="{{ user.first_name }} {{user.last_name }}" /></a>
+          <a href="/members/{{user.username|urlencode }}"><img src="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" alt="{{ user.first_name }} {{user.last_name }}" /></a>
 <!--
                 <div style="background-color: lightgreen; height: 180px; width: 270px;background-image: url(https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn1/s480x480/72859_431971733562827_1974348407_n.jpg);background-repeat: no-repeat;background-size: 100% auto; color: white">
                     <div style="position: relative; top: 103px; left: 30px; font-family: 'Times New Roman'; font-size: 20px;">{{ user.first_name }} {{ user.last_name }}</div>
