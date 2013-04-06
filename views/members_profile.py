@@ -1,14 +1,15 @@
 import os
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.contrib.auth.models import User
-from openshift.models import SkillEntry, InterestEntry
+from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
 #from openshift.models import UserProfile, SkillEntry
 
 def members_profile(request, username):
     member = get_object_or_404(User.objects.filter(username=username))
     skills = SkillEntry.objects.filter(user=member.id).order_by('proficiency')
     interests = InterestEntry.objects.filter(user=member.id).order_by('level')
-    
+    website = WebsiteEntry.objects.filter(user=member.id)
+
     for interest in interests:
         interest.label_class = 'default'
         if interest.level == InterestEntry.NOT_MUCH_INTERESTED:
@@ -40,4 +41,4 @@ def members_profile(request, username):
      #   SkillEntry.objects.filter(user=user)
         #skills.append(skill.name)
         #user.skills = skills.join(',')
-    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests } )
+    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'website': website } )

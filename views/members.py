@@ -1,12 +1,13 @@
 import os
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.contrib.auth.models import User
-from openshift.models import SkillEntry, InterestEntry
+from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
 
 def members(request):
     users = User.objects.all().order_by('first_name')
     skills = set(SkillEntry.objects.all().values_list('skill_name', flat=True))
     interests = set(InterestEntry.objects.all().values_list('interest_name', flat=True))
+    #websites = set(InterestEntry.objects.all().values_list('website_url', flat=True))
     import random
     if len(skills) > 10:
         skills = random.sample(skills, 10)

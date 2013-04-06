@@ -44,3 +44,10 @@ class InterestEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.interest_name, self.level)
+
+class WebsiteEntry(models.Model):
+    user = models.ForeignKey(User)
+    website_url = models.TextField()
+    
+    def __unicode__(self):
+        return "{0} - {1}".format(self.user.username, self.website_url)
