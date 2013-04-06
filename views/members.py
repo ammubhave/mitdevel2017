@@ -32,4 +32,10 @@ def members(request):
      #   SkillEntry.objects.filter(user=user)
         #skills.append(skill.name)
         #user.skills = skills.join(',')
+    
+    for user in users:
+        if user.first_name == '':
+            user.first_name = 'Anonymous'
+        user.__setattr__('index', user.first_name[0])
+    
     return render(request, 'members.html', { 'users': users, 'skills': skills, 'interests': interests, 'pfilter': pfilter, 'pfilter_interest': pfilter_interest } )

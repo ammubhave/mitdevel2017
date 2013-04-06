@@ -68,19 +68,30 @@
       </div>
  <br />
      <div class="row">
-        {% for user in users %}
-        <div class="span4">
-          <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-          <a href="/members/{{user.username|urlencode }}"><img src="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" alt="{{ user.first_name }} {{user.last_name }}" /></a>
-<!--
-                <div style="background-color: lightgreen; height: 180px; width: 270px;background-image: url(https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn1/s480x480/72859_431971733562827_1974348407_n.jpg);background-repeat: no-repeat;background-size: 100% auto; color: white">
-                    <div style="position: relative; top: 103px; left: 30px; font-family: 'Times New Roman'; font-size: 20px;">{{ user.first_name }} {{ user.last_name }}</div>
-<div style="position: relative; top: 100px; left: 30px; ">Class of 2017</div>
-                </div>
-   -->        
-
-        </div>
+        {% regroup users by index as users_list %}
+        
+        
+        <div class="pagination">
+        <ul>
+        {% for users_a in users_list %}
+        <li><a href="#u{{ users_a.grouper }}">{{ users_a.grouper }}</a></li>
         {% endfor %}
+        </ul>
+        </div>
+        
+        {% for users_a in users_list %}
+        <!--<div class="span4">
+          <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+          <a href="/members/{{user.username|urlencode }}"><img src="http://fernandotrujano.com/mit3.php?name={{ user.first_name|urlencode }}+{{ user.last_name|urlencode }}" alt="{{ user.first_name }} {{user.last_name }}" /></a>      </div> -->
+          <h4>{{ users_a.grouper }}</h4>
+          <a id="u{{ users_a.grouper }}" href="#"></a>
+          <ul class="nav nav-pills nav-stacked">
+           {% for user in users_a.list %}
+            <li><a href="/members/{{ user.username|urlencode}}">{{ user.first_name }} {{ user.last_name }}</a></li>
+           {% endfor %}
+          </ul>
+        {% endfor %}
+        
      </div>
 </div>
 
