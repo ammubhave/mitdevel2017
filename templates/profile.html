@@ -2,6 +2,17 @@
 
 {% block title %}User Profile{% endblock %}
 
+{% block head_extra %}
+<style>
+   .skill
+   {
+     padding: 2px 8px;
+     line-height: 25px;
+     margin-right: 10px;
+   }
+</style>
+{% endblock %}
+
 {% block main_content %}
 
 
@@ -13,6 +24,82 @@
           <p class="text-info">{{ user.email }}</p>
         </div><!--/span-->
         <div class="span9">
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for skill in skills %}
+                <span title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}"><span>{{ skill.skill_name|title }}</span> &nbsp;<button onclick="remove_skill(this)" style="float: none" class="close">&times;</button></span>
+            {% endfor %}           
+            <span id="addskill" title="Add skill" class="label label-default" style="line-height: 25px;">&nbsp;&nbsp;Add skill&nbsp;&nbsp;
+            </span>
+            <script>
+                $('#addskill').click( function () {
+                    $('#addskill').before(
+                        $('<span>').attr('class', 'label skill')
+                            .append('<input type="text" placeholder="Skill" style="margin-bottom:0"></input>') 
+                            .append($('<select style="margin-bottom:0">')
+                                .append('<option value="0">Student</option>')
+                                .append('<option value="1">Beginner</option>')
+                                .append('<option value="2">Intermediate</option>')
+                                .append('<option value="3">Advanced</option>')
+                            )
+                            .append('<a class="btn btn-primary" onclick="add_skill(this)" href="#"><i class="icon-ok icon-white"></i></a>')
+                            .append('<a class="btn" href="#" onclick="remove_skill_new(this)">&times;</a>')
+                            
+                        
+                    );
+                });
+                function add_skill(ele)
+                {
+                    var skill_name = $(ele).parent().children(0)
+                    var proficiency = $($(ele).parent().children().eq(1))
+                    var label_class = 'default';
+                    switch (proficiency.val())
+                    {
+                        case "0":
+                            label_class = "info";
+                            break;
+                        case "1":
+                            label_class = "success";
+                            break;
+                        case "2":
+                            label_class = "warning";
+                            break;
+                        case "3":
+                            label_class = "important";
+                            break;
+                    }
+                    
+                    $(ele).parent().after(
+                        $('<span title="' + skill_name.val() + ': ' + proficiency.val() + '" class="label skill label-' + label_class + '"><span>' + skill_name.val() + '</span> &nbsp;<button onclick="remove_skill(this)" style="float: none" class="close">&times;</button></span>')
+                    );
+                    
+                    jQuery.ajax({
+                        url: '/accounts/profile/skills/add',
+                        type: 'POST',
+                        data: {'skill_name': skill_name.val(),
+                               'proficiency': proficiency.val() },
+                        dataType: 'json'                  
+                    });
+                    
+                    $(ele).parent().remove();
+                }
+                function remove_skill(ele)
+                {
+                    var skill_name = $(ele).parent().children(0).html()
+                    jQuery.ajax({
+                        url: '/accounts/profile/skills/remove',
+                        type: 'POST',
+                        data: {'skill_name': skill_name },
+                        dataType: 'json'                  
+                    });
+                    $(ele).parent().remove();
+                }
+                function remove_skill_new(ele)
+                {
+                    $(ele).parent().remove();
+                }
+            </script>
+           </div>
            <ul class="nav nav-pills nav-stacked">
             <li><a href="/accounts/password_change">Change Password</a></li>
            </ul>

@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}MIT Developers - Class of 2017 - Profile - {{ user.first_name }} {{ user.last_name }}{% endblock %}
+{% block title %}MIT Developers - Class of 2017 - Profile - {{ member.first_name }} {{ member.last_name }}{% endblock %}
+
+{% block head_extra %}
+<style>
+   .skill
+   {
+     padding: 2px 8px;
+     line-height: 25px;
+     margin-right: 10px;
+   }
+</style>
+{% endblock %}
+
 
 {% block main_content %}
 
 
 
     <div class="container-fluid">
-    <h2>{{ user.first_name }} {{ user.last_name }}</h2><br />
+    <h2>{{ member.first_name }} {{ member.last_name }}</h2><br />
       <div class="row-fluid">
         <div class="span3">
           <p class="text-info">
@@ -15,6 +27,12 @@
           </p>
         </div><!--/span-->
         <div class="span9">
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for skill in skills %}
+                <span title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}">{{ skill.skill_name|title }}</span>
+            {% endfor %}  
+           </div>        
            <ul class="nav nav-pills nav-stacked">
             <li>Under development...</li>
            </ul>

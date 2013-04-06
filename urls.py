@@ -21,6 +21,9 @@ urlpatterns = patterns('',
     url(r'^accounts/password_change/$', 'django.contrib.auth.views.password_change', name='password_change'),
     url(r'^accounts/password_change_done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
     
+    url(r'^accounts/profile/skills/add$', 'openshift.views.add_skill', name='add_skill'),
+    url(r'^accounts/profile/skills/remove$', 'openshift.views.remove_skill', name='remove_skill'),
+    
     # url(r'^openshift/', include('openshift.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
