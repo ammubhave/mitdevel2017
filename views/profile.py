@@ -17,7 +17,7 @@ def profile(request):
             skill.label_class = 'warning'
         elif skill.proficiency == SkillEntry.ADVANCED:
             skill.label_class = 'important'
-    return render(request, 'profile.html', { 'user': request.user, 'skills': skills } )
+    return render(request, 'profile.html', { 'skills': skills } )
     
 @csrf_exempt
 @login_required
