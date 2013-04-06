@@ -24,7 +24,7 @@
           <p class="text-info">{{ user.email }}</p>
         </div><!--/span-->
         <div class="span9">
-           <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills</a></li></ul>
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills (e.g. Python, Photoshop, etc.)</a></li></ul>
            <div class="well" id="skills-list">
             {% for skill in skills %}
                 <span title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}"><span>{{ skill.skill_name|title }}</span> &nbsp;<button onclick="remove_skill(this)" style="float: none" class="close">&times;</button></span>
