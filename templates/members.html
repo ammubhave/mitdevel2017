@@ -28,7 +28,12 @@
         font-size: 21px;
         padding: 14px 24px;
      }
-
+.skill
+   {
+     padding: 2px 8px;
+     line-height: 25px;
+     margin-right: 10px;
+   }
     </style>
     
    
@@ -42,6 +47,12 @@
       <div class="jumbotron">
         <h1>Members</h1>
         <p class="lead"></p>
+      </div>
+      <div>
+      Filter by: 
+      {% for skill in skills %}
+       <span title="{{ skill|title }}" class="label skill label-info"><a href="members?filter={{ skill|urlencode}}" style="color: white;text-decoration:none">{{ skill|title }}</a></span>
+      {% endfor %}
       </div>
  <br />
      <div class="row">
