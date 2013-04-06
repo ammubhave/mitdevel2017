@@ -30,7 +30,7 @@
            <ul class="nav nav-tabs"><li class="active"><a name="skills">Skills</a></li></ul>
            <div class="well" id="skills-list">
             {% for skill in skills %}
-                <span title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}">{{ skill.skill_name|title }}</span>
+                <a href="/members?filter={{skill.skill_name|urlencode}}" title="{{ skill.skill_name|title }}: {{ skill.proficiency }}" class="label skill label-{{ skill.label_class }}">{{ skill.skill_name|title }}</a>
             {% endfor %}  
            </div>        
            <ul class="nav nav-pills nav-stacked">
