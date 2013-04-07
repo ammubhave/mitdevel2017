@@ -39,6 +39,32 @@
       .marketing p + h4 {
         margin-top: 28px;
       }
+      
+      .tile {
+        text-align: center;
+        line-height: 160px;
+        height: 200px;
+        font-size: 20pt;
+        font-weight: bold;
+      }
+      
+      .tile-members {
+         background-color: #9CF;
+         color: blue;
+      }
+      .tile-members:hover {
+         background-color: #69F;
+         text-decoration: none;
+      }
+      .tile-projects {
+         background-color: #CF6;
+         color: green;
+      }
+      .tile-projects:hover {
+         background-color: #9F6;
+         text-decoration: none;
+      }
+      
 </style>
 {% endblock %}
 
@@ -56,64 +82,10 @@
       <hr />
       
       
-    <div class="tabbable tabs-left">
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#lA" data-toggle="tab">Project #1</a></li>
-                <li><a href="#lB" data-toggle="tab">Project #2</a></li>
-                <li><a href="#lC" data-toggle="tab">Project #3</a></li>
-                <li><a href="#lD" data-toggle="tab">Project #4</a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane active" id="lA">
-                  <p>
-                    <strong>Goal</strong>: Something cool that’ll get cross-admitted kids interested in MIT - no banging other schools
-                  </p>
-                  <p>
-                    <strong>Ideas</strong>:
-<ul><li>RPG game for the fb group</li>
-<li>Apple apps - overarching games/projects/global issues--->e-bulletin of news</li>
-<li>Web app that has tags that connects similar ppl</li>
-<li>AI cool app that has games</li>
-</ul>
-                  </p>
-                </div>
-
-                <div class="tab-pane" id="lB">
-                  <p>
-                    <strong>Goal</strong>: Learn how to do collaborative coding.
-</p><p><strong>THINGS TO CHECK OUT</strong>:
-<ul><li>Django (web framework for python):https://www.djangoproject.com/</li>
-<li>Github</li>
-</li>P2P network</li>
-                  </p>
-                </div>
-
-                <div class="tab-pane" id="lC">
-                  <p>
-                    <strong>Goal</strong>: We should create HMU (hit me up) cards for ourselves - help us distinguish ourselves in the group.
-                    </p>
-<p><ul><li>Make a template for this</li>
-<li>Powerpoint</li>
-<li>Look at Karan’s example</li>
-</ul>
-                  </p>
-                </div>
-
-                <div class="tab-pane" id="lD">
-                  <p>
-                    <strong>Goal</strong>: Implementing a script to transfer all favorited items from the CPW schedule website to a personal Google Calendar including name, description, place, and time.
-                    </p>
-<p><ul><li>  <a href="https://developers.google.com/google-apps/calendar/">Google Calendar API</a></li>
-<li>Python script?   </li>
-<li>CPW planning committee is receptive to help changing the website. Aka if it works they would probably implement it onto the CPW site for us.</li>
-</ul>
-                  </p>
-                </div>
-
-
-              </div>
-            </div> <!-- /tabbable -->
-    
+<div class="row-fluid">
+  <a href="/members" style="display:block"  class="span6 well tile tile-members">Members</a>
+  <a href="/projects" style="display:block" class="span6 well tile tile-projects">Projects</a>
+</div>
     
     
     
