@@ -190,8 +190,8 @@
                         $('<span>').attr('class', 'label skill')
                             .append('<input type="text" placeholder="Website" style="margin-bottom:0"></input>') 
                             .append($('<select style="margin-bottom:0">')
-                                .append('<option value="1">Personal</option>')
-                                .append('<option value="2">Work</option>')
+                                .append('<option value="1">Work</option>')
+                                .append('<option value="2">Personal</option>')
                             )
                             .append('<a class="btn btn-primary" onclick="add_website(this)" href="#"><i class="icon-ok icon-white"></i></a>')
                             .append('<a class="btn" href="#" onclick="remove_website_new(this)">&times;</a>')
@@ -204,18 +204,21 @@
                     var website_url = $(ele).parent().children(0)
                     var classification = $($(ele).parent().children().eq(1))
                     var label_class = 'default';
+                    var label_classification = 'default';
                     switch (classification.val())
                     {
                         case "1":
                             label_class = "info";
+                            label_classification = "Work";
                             break;
                         case "2":
                             label_class = "success";
+                            label_classification = "Personal";
                             break;
                     }
                     
                     $(ele).parent().after(
-                        $('<span title="' + website_url.val() + ': ' + classification.val() + '" class="label skill label-' + label_class + '"><span>' + website_url.val() + '</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>')
+                        $('<span title="' + website_url.val() + ': ' + label_classification + '" class="label skill label-' + label_class + '"><span>' + website_url.val() + '</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>')
                     );
                     
                     jQuery.ajax({

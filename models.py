@@ -48,7 +48,7 @@ class InterestEntry(models.Model):
 class WebsiteEntry(models.Model):
     user = models.ForeignKey(User)
     website_url = models.TextField()
-
+ 
     WORK = 1
     PERSONAL = 2
 
