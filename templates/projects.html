@@ -117,7 +117,7 @@
             <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
                 {% for project in projects %}
-                  <li{% if forloop.first %} class="active"{% endif %}><a href="#project{{ project.id }}" data-toggle="tab"> {{ project.project_name }} </a></li>
+                  <li{% if forloop.first %} class="active"{% endif %}><a href="#project{{ project.id }}" data-toggle="tab" onclick="$('#commentsproj{{project.id}}').html('Loading...'); $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}')"> {{ project.project_name }} </a></li>
                 {% endfor %}
                   <li><a href="#addnewproj" data-toggle="tab">Add new project...</a></li>
               </ul>
@@ -126,7 +126,7 @@
 
                 <div class="tab-pane {% if forloop.first %}active{% endif %}" id="project{{ project.id }}">
                   <p>
-                    {% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn">Delete</a>{% endif %}<span class="pull-right">By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a></span>
+                    <h4>{{ project.project_name }}</h4>{% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn btn-danger">Delete</a>{% endif %}<span class="pull-right">By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a></span>
                     
                     
                     <br />
@@ -156,9 +156,43 @@
                         </div>
                         </form>
                     {% endif %}
+                    <hr /><h4>Comments</h4>
+                    <div class="well">
+                        {% if user.is_authenticated %}
+                        <div>
+                           <script>
+                                function postcomment{{project.id}}()
+                                {
+                                    var body = $('#newcomment{{project.id}}').val();
+                                    if (body == "") return;
+                                    jQuery.ajax({
+                                                    url: '/comments/add',
+                                                    type: 'POST',
+                                                    data: { 'id': 'p{{ project.id }}', 'body': body },
+                                                    dataType: 'json'         
+                                    }).done( function() {
+                                        $('#newcomment{{project.id}}').val('');
+                                        $('#commentsproj{{project.id}}').html('Loading...');
+                                        $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}')
+                                    });
+                                }
+                            </script>
+
+                            <textarea id="newcomment{{project.id}}" name="newcomment{{project.id}}" rows="6" style="width: 100%"></textarea>
+                            <button onclick="postcomment{{project.id}}()" class="btn btn-primary pull-right">Post</button>
+                            
+                        </div>
+                        {% else %}
+                            You need to <a href="/accounts/login?next=/projects">login</a> to comment.
+                        {% endif %}
+                        <hr />
+                        <div id="commentsproj{{project.id}}">Loading...</div>   
+                                        
+                    </div>
+                    {% if forloop.first %}<script>$('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}')</script>{% endif %}
                   </p>
                 </div>
-                
+       
                 {% endfor %}
                 <div class="tab-pane" id="addnewproj">
                 

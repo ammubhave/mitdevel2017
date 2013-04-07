@@ -68,3 +68,18 @@ class ProjectEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1}".format(self.user.username, self.project_name)
+        
+class CommentEntry(models.Model):
+    user = models.ForeignKey(User)
+    
+    #FORMAT:
+    #Project comments: p<project_id>
+    root_id = models.TextField()
+    
+    parent_id = models.IntegerField(default=-1)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    body = models.TextField()
+    
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.user.username, self.body, self.created)

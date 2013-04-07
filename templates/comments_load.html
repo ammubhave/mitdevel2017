@@ -1,0 +1,10 @@
+{% for comment in comments %} 
+<div class="media">
+    <a class="pull-left" href="#" style="display:block;width:64px;">&nbsp;</a>
+    <div class="media-body">
+        <h4 class="media-heading">{{ comment.user.first_name }} {{ comment.user.last_name }}</h4>
+        {{ comment.body }}
+    </div>
+</div>
+         <hr />
+{% endfor %}

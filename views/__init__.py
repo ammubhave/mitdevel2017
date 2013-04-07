@@ -12,3 +12,5 @@ from profile import remove_interest
 from profile import add_website
 from profile import remove_website
 from members_profile import members_profile
+
+from comments import comments_load, comments_add
