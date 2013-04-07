@@ -2,6 +2,8 @@ from home import home
 from members import members
 from projects import projects
 from projects import projects_add
+from projects import projects_delete
+from projects import projects_update
 from profile import profile
 from profile import add_skill
 from profile import remove_skill

@@ -126,8 +126,36 @@
 
                 <div class="tab-pane {% if forloop.first %}active{% endif %}" id="project{{ project.id }}">
                   <p>
-                    By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a><hr />
-                    {{ project.project_description|safe }}
+                    {% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn">Delete</a>{% endif %}<span class="pull-right">By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a></span>
+                    
+                    
+                    <br />
+                    <hr />
+                    <div id="projdesc{{project.id}}">{{ project.project_description|safe }}</div>
+                    {% if project.user == user %}
+                        <form class="form-horizontal" style="display:none" id="projedit{{project.id}}" method="POST" action="/projects/update">
+                      
+                        <legend>Edit project</legend>
+                        <div class="control-group">
+                        <label class="control-label" for="projectName">Name</label>
+                        <div class="controls">
+                        <input type="hidden" name="projectId" value="{{ project.id }}" />
+                        <input type="text" name="projectName" id="projectName" placeholder="Project Name" value="{{ project.project_name }}">
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="projectDesc">Description</label><br />
+                        <div class="controls">
+                        <textarea id="projectDesc" name="projectDesc" rows="6" style="width: 80%">{{ project.project_description_safe|safe }}</textarea>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <div class="controls">                        
+                        <button type="submit" class="btn">Save</button>
+                        </div>
+                        </div>
+                        </form>
+                    {% endif %}
                   </p>
                 </div>
                 
