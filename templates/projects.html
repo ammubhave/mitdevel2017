@@ -117,23 +117,18 @@
             <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
                 {% for project in projects %}
-                  <li><a href="{{ project.project_name }}" data-toggle="tab"> {{ project.project_name }} </a></li>
+                  <li><a href="#project{{ project.id }}" data-toggle="tab"> {{ project.project_name }} </a></li>
                 {% endfor %}
               </ul>
               <div class="tab-content">
                 {% for project in projects %}
 
-                <div class="tab-pane" id="{{ project.project_name }}">
+                <div class="tab-pane" id="#project{{ project.id }}">
                   <p>
                     <strong>Goal</strong>: {{ project.project_goal }}
                   </p>
                   <p>
-                    <strong>Ideas</strong>:
-                      <ul>
-                      {% for idea in project.ideas %}
-                        <li>{{ project.ideas.idea }}</li>
-                      {% endfor %}
-                      </ul>
+                    {{ project.project_details }}
                   </p>
                 </div>
             </div> <!-- /tabbable -->
