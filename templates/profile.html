@@ -54,24 +54,29 @@
                     var skill_name = $(ele).parent().children(0)
                     var proficiency = $($(ele).parent().children().eq(1))
                     var label_class = 'default';
+                    var label_skill = 'default';
                     switch (proficiency.val())
                     {
                         case "0":
                             label_class = "info";
+                            label_skill = "Student";
                             break;
                         case "1":
                             label_class = "success";
+                            label_skill = "Beginner";
                             break;
                         case "2":
                             label_class = "warning";
+                            label_skill = "Intermediate";
                             break;
                         case "3":
                             label_class = "important";
+                            label_skill = "Advanced";
                             break;
                     }
                     
                     $(ele).parent().after(
-                        $('<span title="' + skill_name.val() + ': ' + proficiency.val() + '" class="label skill label-' + label_class + '"><span>' + skill_name.val() + '</span> &nbsp;<button onclick="remove_skill(this)" style="float: none" class="close">&times;</button></span>')
+                        $('<span title="' + skill_name.val() + ': ' + label_level + '" class="label skill label-' + label_class + '"><span>' + skill_name.val() + '</span> &nbsp;<button onclick="remove_skill(this)" style="float: none" class="close">&times;</button></span>')
                     );
                     
                     jQuery.ajax({
@@ -117,7 +122,7 @@
                         $('<span>').attr('class', 'label skill')
                             .append('<input type="text" placeholder="Interest" style="margin-bottom:0"></input>') 
                             .append($('<select style="margin-bottom:0">')
-                                .append('<option value="1">Not much Interested</option>')
+                                .append('<option value="1">Not very Interested</option>')
                                 .append('<option value="2" selected="selected">Interested</option>')
                                 .append('<option value="3">Very Interested</option>')
                             )
@@ -132,21 +137,25 @@
                     var interest_name = $(ele).parent().children(0)
                     var level = $($(ele).parent().children().eq(1))
                     var label_class = 'default';
+                    var label_level = 'default';
                     switch (level.val())
                     {
                         case "1":
                             label_class = "info";
+                            label_level = "Not very Interested";
                             break;
                         case "2":
                             label_class = "success";
+                            label_level = "Interested";
                             break;
                         case "3":
                             label_class = "important";
+                            label_level = "Very Interested";
                             break;
                     }
                     
                     $(ele).parent().after(
-                        $('<span title="' + interest_name.val() + ': ' + level.val() + '" class="label skill label-' + label_class + '"><span>' + interest_name.val() + '</span> &nbsp;<button onclick="remove_interest(this)" style="float: none" class="close">&times;</button></span>')
+                        $('<span title="' + interest_name.val() + ': ' + label_level + '" class="label skill label-' + label_class + '"><span>' + interest_name.val() + '</span> &nbsp;<button onclick="remove_interest(this)" style="float: none" class="close">&times;</button></span>')
                     );
                     
                     jQuery.ajax({
