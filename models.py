@@ -60,3 +60,11 @@ class WebsiteEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.website_url, self.classification)
+
+class ProjectEntry(models.Model):
+    user = models.ForeignKey(User)
+    project_name = models.TextField()
+    project_description = models.TextField()
+    
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.user.username, self.website_url, self.project_description)
