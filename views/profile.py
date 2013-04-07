@@ -41,10 +41,10 @@ def profile(request):
         website.label_class = 'default'
         if website.classification == WebsiteEntry.PERSONAL:
             website.classification_text = 'Personal'
-            website.label_class = 'info'
+            website.label_class = 'success'
         elif website.classification == WebsiteEntry.WORK:
             website.classification_text = 'Work'
-            website.label_class = 'success'
+            website.label_class = 'info'
 
     return render(request, 'profile.html', { 'skills': skills, 'interests': interests, 'websites': websites } )
     
