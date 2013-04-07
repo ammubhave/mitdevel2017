@@ -56,6 +56,12 @@
       
     <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
+                
+                {% comment %}
+                 {% for project in projects %}
+                  <li><a href="#lB" data-toggle="tab"> {{ project.project_name }} </a></li> %}
+                {% endcomment %}
+
                 <li class="active"><a href="#lA" data-toggle="tab">Project #1</a></li>
                 <li><a href="#lB" data-toggle="tab">Project #2</a></li>
                 <li><a href="#lC" data-toggle="tab">Project #3</a></li>
