@@ -221,7 +221,7 @@
                     jQuery.ajax({
                         url: '/accounts/profile/websites/add',
                         type: 'POST',
-                        data: {'website_url': website_url.val(),
+                        data: {'website_url': website_url.val().replace('http://',""),
                                'classification': classification.val() },
                         dataType: 'json'                  
                     });
