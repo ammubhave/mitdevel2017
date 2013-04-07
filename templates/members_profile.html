@@ -45,7 +45,7 @@
            <ul class="nav nav-tabs"><li class="active"><a name="skills">Websites</a></li></ul>
            <div class="well" id="skills-list">
             {% for website in websites %}
-                <a href="http://{{ website.website_url }}" title="{{ website.website_url|title }}" class="label skill label-{{ website.label_class }}" target="_blank">{{ website.website_url }}</a>
+                <a href="http://{{ website.website_url }}" title="{{ website.website_url }}" class="label skill label-{{ website.label_class }}" target="_blank">{{ website.website_url }}</a>
             {% endfor %}  
            </div>    
         </div><!--/span-->

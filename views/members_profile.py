@@ -38,7 +38,7 @@ def members_profile(request, username):
             skill.label_class = 'important'
 
     for website in websites:
-        interest.label_class = 'default'
+        website.label_class = 'default'
         if website.classification == WebsiteEntry.PERSONAL:
             website.classification_text = 'Personal'
             website.label_class = 'info'

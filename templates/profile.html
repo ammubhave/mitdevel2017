@@ -180,7 +180,7 @@
            <ul class="nav nav-tabs"><li class="active"><a name="skills">Personal Website</a></li></ul>
            <div class="well" id="skills-list">
             {% for website in websites %}
-                <span title="{{ website.website_url|title }}: {{ website.classification_text }}" class="label skill label-{{ website.label_class }}"><span>{{ website.website_url }}</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>
+                <span title="{{ website.website_url }}: {{ website.classification_text }}" class="label skill label-{{ website.label_class }}"><span>{{ website.website_url }}</span> &nbsp;<button onclick="remove_website(this)" style="float: none" class="close">&times;</button></span>
             {% endfor %}           
             <span id="addwebsite" title="Add website" class="label label-default" style="line-height: 25px;">&nbsp;&nbsp;Add website&nbsp;&nbsp;
             </span>
