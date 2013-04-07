@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
 #from openshift.models import UserProfile, SkillEntry
 
+'''Display a member's profile: his skills, interests, website, etc.
+'''
 def members_profile(request, username):
     member = get_object_or_404(User.objects.filter(username=username))
     skills = SkillEntry.objects.filter(user=member.id).order_by('proficiency')
     interests = InterestEntry.objects.filter(user=member.id).order_by('level')
     websites = WebsiteEntry.objects.filter(user=member.id)
 
+    # TODO: The code is redundant, too many places same code is written. Use a better method to lookup.
     for interest in interests:
         interest.label_class = 'default'
         if interest.level == InterestEntry.NOT_MUCH_INTERESTED:
@@ -46,9 +49,4 @@ def members_profile(request, username):
             website.classification_text = 'Work'
             website.label_class = 'success'
         
-    #for user in users:
-      #  skills = []
-     #   SkillEntry.objects.filter(user=user)
-        #skills.append(skill.name)
-        #user.skills = skills.join(',')
     return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites } )

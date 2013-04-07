@@ -4,11 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
 
+''' Display the profile of logged in user. Allow changes
+'''
 @login_required
 def profile(request): 
     skills = SkillEntry.objects.filter(user = request.user.id).order_by('proficiency')
     interests = InterestEntry.objects.filter(user = request.user.id).order_by('level')
     websites = WebsiteEntry.objects.filter(user = request.user.id)
+    
+    # TODO: Redundant. Find better way.
     for interest in interests:
         interest.label_class = 'default'
         if interest.level == InterestEntry.NOT_VERY_INTERESTED:
@@ -48,6 +52,10 @@ def profile(request):
 
     return render(request, 'profile.html', { 'skills': skills, 'interests': interests, 'websites': websites } )
     
+    
+#TODO: Too many methods below and quite redundant. Use only two methods, add, remove common to all
+    
+''' Add new skill '''
 @csrf_exempt
 @login_required
 def add_skill(request):
@@ -61,6 +69,7 @@ def add_skill(request):
         success = True
     return render(request, 'profile_add_skill.html', { 'success': success } )
     
+''' Remove skill '''
 @csrf_exempt
 @login_required
 def remove_skill(request):
@@ -71,6 +80,7 @@ def remove_skill(request):
     
     return render(request, 'profile_add_skill.html', { 'success': True } )
     
+''' Add interest '''
 @csrf_exempt
 @login_required
 def add_interest(request):
@@ -84,6 +94,7 @@ def add_interest(request):
         success = True
     return render(request, 'profile_add_skill.html', { 'success': success } )
     
+''' Remove interest '''
 @csrf_exempt
 @login_required
 def remove_interest(request):
@@ -94,6 +105,7 @@ def remove_interest(request):
     
     return render(request, 'profile_add_skill.html', { 'success': True } )
 
+''' Add website '''
 @csrf_exempt
 @login_required
 def add_website(request):
@@ -107,6 +119,7 @@ def add_website(request):
         success = True
     return render(request, 'profile_add_skill.html', { 'success': success } )
     
+''' Remove website '''
 @csrf_exempt
 @login_required
 def remove_website(request):
