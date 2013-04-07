@@ -163,6 +163,7 @@
                            <script>
                                 function postcomment{{project.id}}()
                                 {
+                                    $('#newcommentbtn{{project.id}}').attr('disabled', 'disabled');
                                     var body = $('#newcomment{{project.id}}').val();
                                     if (body == "") return;
                                     jQuery.ajax({
@@ -173,13 +174,15 @@
                                     }).done( function() {
                                         $('#newcomment{{project.id}}').val('');
                                         $('#commentsproj{{project.id}}').html('Loading...');
-                                        $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}')
+                                        $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}');
+                                        $('#newcommentbtn{{project.id}}').removeAttr('disabled');
                                     });
+                                    
                                 }
                             </script>
 
                             <textarea id="newcomment{{project.id}}" name="newcomment{{project.id}}" rows="6" style="width: 100%"></textarea>
-                            <button onclick="postcomment{{project.id}}()" class="btn btn-primary pull-right">Post</button>
+                            <button id="newcommentbtn{{project.id}}" onclick="postcomment{{project.id}}()" class="btn btn-primary pull-right">Post</button>
                             
                         </div>
                         {% else %}
