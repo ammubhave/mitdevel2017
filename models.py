@@ -32,11 +32,11 @@ class InterestEntry(models.Model):
     user = models.ForeignKey(User)
     interest_name = models.TextField()
     
-    NOT_MUCH_INTERESTED = 1
+    NOT_VERY_INTERESTED = 1
     INTERESTED = 2
     VERY_INTERESTED = 3
     LEVEL_CHOICES = (
-        (NOT_MUCH_INTERESTED, 'Not much Interested'),
+        (NOT_VERY_INTERESTED, 'Not very Interested'),
         (INTERESTED, 'Interested'),
         (VERY_INTERESTED, 'Very Interested'),
     )

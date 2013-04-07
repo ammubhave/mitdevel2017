@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}MIT Developers - Class of 2017 - Home{% endblock %}
+
+{% block head_extra %}
+<style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 40px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+</style>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <div class="jumbotron">          
+            
+                <h2>Projects</h2>
+    </div>
+      
+      <hr />
+      
+      
+    <div class="tabbable tabs-left">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#lA" data-toggle="tab">Project #1</a></li>
+                <li><a href="#lB" data-toggle="tab">Project #2</a></li>
+                <li><a href="#lC" data-toggle="tab">Project #3</a></li>
+                <li><a href="#lD" data-toggle="tab">Project #4</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="lA">
+                  <p>
+                    <strong>Goal</strong>: Something cool that’ll get cross-admitted kids interested in MIT - no banging other schools
+                  </p>
+                  <p>
+                    <strong>Ideas</strong>:
+<ul><li>RPG game for the fb group</li>
+<li>Apple apps - overarching games/projects/global issues--->e-bulletin of news</li>
+<li>Web app that has tags that connects similar ppl</li>
+<li>AI cool app that has games</li>
+</ul>
+                  </p>
+                </div>
+
+                <div class="tab-pane" id="lB">
+                  <p>
+                    <strong>Goal</strong>: Learn how to do collaborative coding.
+</p><p><strong>THINGS TO CHECK OUT</strong>:
+<ul><li>Django (web framework for python):https://www.djangoproject.com/</li>
+<li>Github</li>
+</li>P2P network</li>
+                  </p>
+                </div>
+
+                <div class="tab-pane" id="lC">
+                  <p>
+                    <strong>Goal</strong>: We should create HMU (hit me up) cards for ourselves - help us distinguish ourselves in the group.
+                    </p>
+<p><ul><li>Make a template for this</li>
+<li>Powerpoint</li>
+<li>Look at Karan’s example</li>
+</ul>
+                  </p>
+                </div>
+
+                <div class="tab-pane" id="lD">
+                  <p>
+                    <strong>Goal</strong>: Implementing a script to transfer all favorited items from the CPW schedule website to a personal Google Calendar including name, description, place, and time.
+                    </p>
+<p><ul><li>  <a href="https://developers.google.com/google-apps/calendar/">Google Calendar API</a></li>
+<li>Python script?   </li>
+<li>CPW planning committee is receptive to help changing the website. Aka if it works they would probably implement it onto the CPW site for us.</li>
+</ul>
+                  </p>
+                </div>
+
+
+              </div>
+            </div> <!-- /tabbable -->
+    
+    
+    
+    
+    <hr/>
+
+      <footer>
+        <p>{% include "footer.html" %}</p>
+      </footer>
+
+</div>
+
+{% endblock %}

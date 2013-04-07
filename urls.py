@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'openshift.views.home', name='home'),
+    url(r'^projects$', 'openshift.views.projects', name='projects'),
     url(r'^members$', 'openshift.views.members', name='members'),
     url(r'^members/(?P<username>[0-9A-Za-z]+)$', 'openshift.views.members_profile', name='members_profile'),
     
