@@ -14,6 +14,7 @@ def projects(request):
         project.project_description = project.project_description.replace('\n', '<br />')
         project.project_description = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', project.project_description)
         project.project_description = re.sub(r'_(.*?)_', r'<em>\1</em>', project.project_description)
+        project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
     
     return render_to_response('projects.html', { 'projects': projects, 'user': request.user })
     
