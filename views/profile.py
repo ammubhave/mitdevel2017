@@ -50,7 +50,7 @@ def profile(request):
             website.classification_text = 'Work'
             website.label_class = 'info'
 
-    return render(request, 'profile.html', { 'skills': skills, 'interests': interests, 'websites': websites } )
+    return render(request, 'profile.html', { 'skills': skills, 'interests': interests, 'websites': websites, 'user': request.user } )
     
     
 #TODO: Too many methods below and quite redundant. Use only two methods, add, remove common to all

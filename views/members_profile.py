@@ -49,4 +49,4 @@ def members_profile(request, username):
             website.classification_text = 'Work'
             website.label_class = 'success'
         
-    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites } )
+    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites, 'user': request.user } )
