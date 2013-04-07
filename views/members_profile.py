@@ -15,8 +15,8 @@ def members_profile(request, username):
     # TODO: The code is redundant, too many places same code is written. Use a better method to lookup.
     for interest in interests:
         interest.label_class = 'default'
-        if interest.level == InterestEntry.NOT_MUCH_INTERESTED:
-            interest.level_text = 'Not much Interested'
+        if interest.level == InterestEntry.NOT_VERY_INTERESTED:
+            interest.level_text = 'Not very Interested'
             interest.label_class = 'info'
         elif interest.level == InterestEntry.INTERESTED:
             interest.level_text = 'Interested'

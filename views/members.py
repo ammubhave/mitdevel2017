@@ -46,4 +46,4 @@ def members(request):
             user.first_name = 'Anonymous'
         user.__setattr__('index', user.first_name[0])
     
-    return render(request, 'members.html', { 'users': users, 'skills': skills, 'interests': interests, 'pfilter': pfilter, 'pfilter_interest': pfilter_interest } )
+    return render(request, 'members.html', { 'users': users, 'skills': skills, 'interests': interests, 'pfilter': pfilter, 'pfilter_interest': pfilter_interest, 'user': request.user } )

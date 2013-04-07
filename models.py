@@ -67,4 +67,4 @@ class ProjectEntry(models.Model):
     project_description = models.TextField()
     
     def __unicode__(self):
-        return "{0} - {1} - {2}".format(self.user.username, self.project_name, self.project_description)
+        return "{0} - {1}".format(self.user.username, self.project_name)

@@ -53,7 +53,7 @@
       
       <hr />
       
-      
+   <!--   
     <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#lA" data-toggle="tab">Project #1</a></li>
@@ -69,7 +69,7 @@
                   <p>
                     <strong>Ideas</strong>:
 <ul><li>RPG game for the fb group</li>
-<li>Apple apps - overarching games/projects/global issues--->e-bulletin of news</li>
+<li>Apple apps - overarching games/projects/global issuese-bulletin of news</li>
 <li>Web app that has tags that connects similar ppl</li>
 <li>AI cool app that has games</li>
 </ul>
@@ -110,30 +110,58 @@
 
 
               </div>
-            </div> <!-- /tabbable -->
+            </div>  -->
 
 
-    {% comment %}
+  
             <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
                 {% for project in projects %}
-                  <li><a href="#project{{ project.id }}" data-toggle="tab"> {{ project.project_name }} </a></li>
+                  <li{% if forloop.first %} class="active"{% endif %}><a href="#project{{ project.id }}" data-toggle="tab"> {{ project.project_name }} </a></li>
                 {% endfor %}
+                  <li><a href="#addnewproj" data-toggle="tab">Add new project...</a></li>
               </ul>
               <div class="tab-content">
                 {% for project in projects %}
 
-                <div class="tab-pane" id="project{{ project.id }}">
+                <div class="tab-pane {% if forloop.first %}active{% endif %}" id="project{{ project.id }}">
                   <p>
-                    <strong>Goal</strong>: {{ project.project_goal }}
-                  </p>
-                  <p>
-                    {{ project.project_details }}
+                    By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a><hr />
+                    {{ project.project_description|safe }}
                   </p>
                 </div>
+                
+                {% endfor %}
+                <div class="tab-pane" id="addnewproj">
+                
+                        <form class="form-horizontal" method="POST" action="/projects/add">
+                      
+                        <legend>Add new project</legend>
+                        <div class="control-group">
+                        <label class="control-label" for="projectName">Name</label>
+                        <div class="controls">
+                        <input type="text" name="projectName" id="projectName" placeholder="Project Name">
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="projectDesc">Description</label><br />
+                        <div class="controls">
+                        <textarea id="projectDesc" name="projectDesc" rows="6" style="width: 80%"></textarea>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <div class="controls">                        
+                        <button type="submit" class="btn">Add</button>
+                        <button type="reset" class="btn">Reset</button>
+                        </div>
+                        </div>
+                        </form>
+                                          
+                </div>
+              </div>
             </div> <!-- /tabbable -->
     
-  {% endcomment %}
+
     
     
     <hr/>
