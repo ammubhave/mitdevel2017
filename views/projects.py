@@ -21,6 +21,8 @@ def projects(request):
 @csrf_exempt
 @login_required
 def projects_add(request):
+    if 'projectName' not in request.POST:
+        return redirect('/projects')
     project_name = request.POST['projectName']
     project_description = request.POST['projectDesc']
     projects = ProjectEntry.objects.filter(project_name = project_name)
@@ -35,6 +37,8 @@ def projects_add(request):
 @csrf_exempt
 @login_required
 def projects_update(request):
+    if 'projectId' not in request.POST:
+        return redirect('/projects')
     project_id = request.POST['projectId']
     project_name = request.POST['projectName']
     project_description = request.POST['projectDesc']
@@ -49,6 +53,8 @@ def projects_update(request):
     
 @login_required
 def projects_delete(request):
+    if 'id' not in request.GET:
+        return redirect('/projects')
     project_id = request.GET['id']
     project = ProjectEntry.objects.filter(id = project_id, user=request.user.id)
     if len(project) > 0:
