@@ -69,11 +69,12 @@ class ProjectEntry(models.Model):
     def __unicode__(self):
         return "{0} - {1}".format(self.user.username, self.project_name)
         
+#FORMAT: (for root_id field)
+# Project comments: p<project_id>   
 class CommentEntry(models.Model):
     user = models.ForeignKey(User)
     
-    #FORMAT:
-    #Project comments: p<project_id>
+    
     root_id = models.TextField()
     
     parent_id = models.IntegerField(default=-1)
@@ -83,3 +84,17 @@ class CommentEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.body, self.created)
+        
+class VotingEntry(models.Model):
+    user = models.ForeignKey(User)
+    root_id = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    
+    VOTE_CHOICES = (
+        (+1, '+1'),
+        (-1, '-1'),
+    )
+    vote = models.IntegerField(choices=VOTE_CHOICES)
+    
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.user.username, self.root_id, self.vote)
