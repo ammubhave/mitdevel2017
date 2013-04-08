@@ -15,9 +15,9 @@ def collaborators_add(request):
     if 'projectName' not in request.POST:
         return redirect('/projects')
     project = request.GET['id']
-    collaborators = CollaboratorstEntry.objects.filter(project_name = project_name)
+    collaborators = CollaboratorsEntry.objects.filter(project_name = project_name)
     if len(collaborators) == 0:
-        collaborator = ProjectEntry(project = project_name,
+        collaborator = CollaboratorsEntry(project = project_name,
                         user = request.user)
         collaborator.save()
     
@@ -28,10 +28,9 @@ def collaborators_delete(request):
     if 'projectName' not in request.POST:
         return redirect('/projects')
     project = request.GET['id']
-    collaborators = CollaboratorstEntry.objects.filter(project_name = project_name)
+    collaborators = CollaboratorsEntry.objects.filter(project_name = project_name)
     if len(collaborators) == 0:
-        collaborator = ProjectEntry(project = request.project.id,
-                        user = request.user)
-        collaborator.save()
+        collaborator = collaborator[0]
+        collaborator.delete()
     
     return redirect('/projects')

@@ -184,42 +184,39 @@
                         </form>
                     {% endif %}
 
-
                     <hr /><h4>Collaborators</h4>
                     <div class="well">
                         {% if user.is_authenticated %}
-                        <div>
-                           <script>
-                                function addcollaborators{{project.id}}()
-                                {
-                                    $('#newcollaboratorbtn{{project.id}}').attr('disabled', 'disabled');
-                                    var body = $('#newcomment{{project.id}}').val();
-                                    if (body == "") return;
-                                    jQuery.ajax({
-                                                    url: '/collaborators/add',
-                                                    type: 'POST',
-                                                    data: { 'user_id': '{{ user.id }}', 'project_id': '{{ project.id }}' },
-                                                    dataType: 'json'         
-                                    }).done( function() {
-                                        $('#newcomment{{project.id}}').val('');
-                                        $('#commentsproj{{project.id}}').html('Loading...');
-                                        $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}');
-                                        $('#newcommentbtn{{project.id}}').removeAttr('disabled');
-                                    });   
-                                }
-                            </script>
-                            
+                        
+                         this is some test text
 
-                            <button id="newcollaboratorbtn{{project.id}}" onclick="addcollaborators{{project.id}}()" class="btn btn-primary pull-right">Join</button>
+                         <script>
+                              function addcollaborators{{project.id}}()
+                              {
+                                  $('#newcollaboratorbtn{{project.id}}').attr('disabled', 'disabled');
+                                  jQuery.ajax({
+                                                  url: '/collaborators/add',
+                                                  type: 'POST',
+                                                  data: { 'user_id': '{{ user.id }}', 'project_id': '{{ project.id }}' },
+                                                  dataType: 'json'         
+                                  }).done( function() {});   
+                              }
+                          </script>
+                          
 
-                        </div>
+                          <button id="newcollaboratorbtn{{project.id}}" onclick="addcollaborators{{project.id}}()" class="btn btn-primary pull-right">Join</button>
+
+                        
                         {% else %}
                             You need to <a href="/accounts/login?next=/projects">login</a> to comment.
                         {% endif %}
-                        <hr />                                        
-                    </div>
-                  </p>
-                </div>
+                      </div>
+                    <hr />
+
+                  
+
+
+
 
 
 
