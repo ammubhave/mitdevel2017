@@ -126,7 +126,11 @@
 
                 <div class="tab-pane {% if forloop.first %}active{% endif %}" id="project{{ project.id }}">
                   <p>
-                    <h4>{{ project.project_name }}</h4>{% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn btn-danger">Delete</a>{% endif %}
+                    <span class="pull-right">By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a></span>
+
+                    <h4>{{ project.project_name }}</h4>
+
+                    {% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn btn-danger">Delete</a>{% endif %}
                     &nbsp;&nbsp;<span id="votesproj{{project.id}}"></span> Vote(s)
                     
                     <script>
@@ -149,7 +153,7 @@
                     &nbsp;<a href="#" id="upvoteproject{{project.id}}" onclick="voteproject{{project.id}}(1)">+1</a>
                     &nbsp;<a href="#" id="downvoteproject{{project.id}}" onclick="voteproject{{project.id}}(-1)">-1</a>
                     
-                    <span class="pull-right">By <a href="/members/{{ project.user.username }}">{{ project.user.first_name }} {{ project.user.last_name }}</a></span>
+                    
                     
                     
                     <br />
