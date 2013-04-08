@@ -1,7 +1,7 @@
 import os
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.contrib.auth.models import User
-from openshift.models import SkillEntry, InterestEntry, WebsiteEntry
+from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry
 #from openshift.models import UserProfile, SkillEntry
 
 '''Display a member's profile: his skills, interests, website, etc.
@@ -11,6 +11,7 @@ def members_profile(request, username):
     skills = SkillEntry.objects.filter(user=member.id).order_by('proficiency')
     interests = InterestEntry.objects.filter(user=member.id).order_by('level')
     websites = WebsiteEntry.objects.filter(user=member.id)
+    projects = ProjectEntry.objects.filter(user=member.id)
 
     # TODO: The code is redundant, too many places same code is written. Use a better method to lookup.
     for interest in interests:
@@ -48,5 +49,14 @@ def members_profile(request, username):
         elif website.classification == WebsiteEntry.WORK:
             website.classification_text = 'Work'
             website.label_class = 'success'
+
+    for project in projects:
+        project.label_class = 'info'
+        # if project.role == ProjectEntry.FOUNDER:
+        #     project.role_text = 'Founder'
+        #     project.label_class = 'info'
+        # elif project.role == ProjectEntry.COLLABORATOR:
+        #     project.role_text = 'Collaborator'
+        #     project.label_class = 'success'
         
-    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites, 'user': request.user } )
+    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites, 'projects': projects, 'user': request.user } )
