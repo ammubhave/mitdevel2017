@@ -35,20 +35,3 @@ def collaborators_delete(request):
         collaborator.save()
     
     return redirect('/projects')
-
-@csrf_exempt
-@login_required
-def voting_vote(request):
-    votes = VotingEntry.objects.filter(root_id=request.POST['id'], user=request.user.id)
-    vote_data = int(request.POST['vote'])
-    if vote_data not in (1, -1):
-        return HttpResponse('0')
-    if len(votes) == 0: # check if user has already voted        
-        vote = VotingEntry(root_id=request.POST['id'], user=request.user, vote=int(request.POST['vote']))
-        vote.save()
-    else:
-        vote = votes[0]
-        if vote.vote != int(request.POST['vote']):
-            vote.vote = int(request.POST['vote'])
-            vote.save()
-    return HttpResponse('1')
