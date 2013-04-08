@@ -188,8 +188,8 @@
                     <div class="well">
                         {% if user.is_authenticated %}
                         
-                         this is some test text
-
+                            
+                         
                          <script>
                               function addcollaborators{{project.id}}()
                               {
@@ -197,9 +197,11 @@
                                   jQuery.ajax({
                                                   url: '/collaborators/add',
                                                   type: 'POST',
-                                                  data: { 'user_id': '{{ user.id }}', 'project_id': '{{ project.id }}' },
+                                                  data: { 'project_id': '{{ project.id }}' },
                                                   dataType: 'json'         
-                                  }).done( function() {});   
+                                  }).done( function() {
+                                    $('#newcollaboratorbtn{{project.id}}').removeAttr('disabled');
+                                  });   
                               }
                           </script>
                           
@@ -208,7 +210,7 @@
 
                         
                         {% else %}
-                            You need to <a href="/accounts/login?next=/projects">login</a> to comment.
+                            You need to <a href="/accounts/login?next=/projects">login</a>.
                         {% endif %}
                       </div>
                     <hr />
