@@ -14,3 +14,4 @@ from profile import remove_website
 from members_profile import members_profile
 
 from comments import comments_load, comments_add, comments_delete
+from voting import voting_load, voting_vote

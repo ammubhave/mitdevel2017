@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^comments/load$', 'openshift.views.comments_load', name='comments_load'),
     url(r'^comments/add$', 'openshift.views.comments_add', name='comments_add'),
     url(r'^comments/delete$', 'openshift.views.comments_delete', name='comments_delete'),
+    url(r'^voting/load$', 'openshift.views.voting_load', name='voting_load'),
+    url(r'^voting/vote$', 'openshift.views.voting_vote', name='voting_vote'),
     
     url(r'^members$', 'openshift.views.members', name='members'),
     url(r'^members/(?P<username>[0-9A-Za-z]+)$', 'openshift.views.members_profile', name='members_profile'),

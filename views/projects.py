@@ -9,7 +9,7 @@ def projects(request):
     projects = ProjectEntry.objects.all()
     import re
     
-    for project in projects:
+    for project in projects:      
         project.project_description_safe = project.project_description
         project.project_description = project.project_description.replace('\n', '<br />')
         project.project_description = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', project.project_description)
