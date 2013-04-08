@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 def collaborators(request):
+    #collaborators = CollaboratorsEntry.objects.filter(project = request.id)
     collaborators = CollaboratorsEntry.objects.all()
     return render_to_response('projects.html', { 'collaborators': collaborators })
 

@@ -2,12 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 import os
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry, VotingEntry
+from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry, VotingEntry, CollaboratorsEntry
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 def projects(request):
     projects = ProjectEntry.objects.all()
+    #collaborators = CollaboratorsEntry.objects.filter(project = request.id)
+    #collaborators = CollaboratorsEntry.objects.filter(project = request.GET['projectId'])
     import re
     
     for project in projects:   
@@ -25,6 +27,7 @@ def projects(request):
         project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
     
     #projects = projects.order_by('votes')
+    #return render_to_response('projects.html', { 'projects': projects, 'user': request.user, 'collaborators': collaborators })
     return render_to_response('projects.html', { 'projects': projects, 'user': request.user })
     
 @csrf_exempt

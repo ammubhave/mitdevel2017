@@ -117,7 +117,7 @@
             <div class="tabbable tabs-left">
               <ul class="nav nav-tabs">
                 {% for project in projects %}
-                  <li{% if forloop.first %} class="active"{% endif %}><a href="#project{{ project.id }}" data-toggle="tab" onclick="$('#commentsproj{{project.id}}').html('Loading...'); $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}'); $('#votesproj{{project.id}}').load('/voting/load?id=p{{project.id}}');"> {{ project.project_name }} </a></li>
+                  <li{% if forloop.first %} class="active"{% endif %}><a href="#project{{ project.id }}" data-toggle="tab" onclick="$('#commentsproj{{project.id}}').html('Loading...'); $('#commentsproj{{project.id}}').load('/comments/load?id=p{{project.id}}'); $('#votesproj{{project.id}}').load('/voting/load?id=p{{project.id}}'); $('#collaboratorsproj{{project.id}}').load('/collaborators/load?id=p{{project.id}}');"> {{ project.project_name }} </a></li>
                 {% endfor %}
                   <li><a href="#addnewproj" data-toggle="tab">Add new project...</a></li>
               </ul>
@@ -187,9 +187,11 @@
                     <hr /><h4>Collaborators</h4>
                     <div class="well">
                         {% if user.is_authenticated %}
+
+                        {% for collaborator in collaborators %} 
+                        <span class="media-heading"><a target="_blank" href="/members/{{collaborator.user.username}}">{{ collaborator.user.first_name }} {{ collaborator.user.last_name }}</a></span>
+                        {% endfor %}
                         
-                            
-                         
                          <script>
                               function addcollaborators{{project.id}}()
                               {
@@ -215,15 +217,7 @@
                       </div>
                     <hr />
 
-                  
-
-
-
-
-
-
-
-
+              
 
 
                     <hr /><h4>Comments</h4>

@@ -12,11 +12,15 @@ urlpatterns = patterns('',
     url(r'^projects/add$', 'openshift.views.projects_add', name='projects_add'),
     url(r'^projects/delete$', 'openshift.views.projects_delete', name='projects_delete'),
     url(r'^projects/update$', 'openshift.views.projects_update', name='projects_update'),
+
     url(r'^comments/load$', 'openshift.views.comments_load', name='comments_load'),
     url(r'^comments/add$', 'openshift.views.comments_add', name='comments_add'),
     url(r'^comments/delete$', 'openshift.views.comments_delete', name='comments_delete'),
+
+    url(r'^collaborators/load$', 'openshift.views.collaborators', name='collaborators'),
     url(r'^collaborators/add$', 'openshift.views.collaborators_add', name='collaborators_add'),
     url(r'^collaborators/delete$', 'openshift.views.collaborators_delete', name='collaborators_delete'),
+
     url(r'^voting/load$', 'openshift.views.voting_load', name='voting_load'),
     url(r'^voting/vote$', 'openshift.views.voting_vote', name='voting_vote'),
     
