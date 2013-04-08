@@ -9,7 +9,7 @@ from django.http import HttpResponse
 def projects(request):
     projects = ProjectEntry.objects.all()
     #collaborators = CollaboratorsEntry.objects.filter(project = request.id)
-    #collaborators = CollaboratorsEntry.objects.filter(project = request.GET['projectId'])
+    collaborators = CollaboratorsEntry.objects.all()
     import re
     
     for project in projects:   
@@ -27,8 +27,8 @@ def projects(request):
         project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
     
     #projects = projects.order_by('votes')
-    #return render_to_response('projects.html', { 'projects': projects, 'user': request.user, 'collaborators': collaborators })
-    return render_to_response('projects.html', { 'projects': projects, 'user': request.user })
+    return render_to_response('projects.html', { 'projects': projects, 'user': request.user, 'collaborators': collaborators })
+    #return render_to_response('projects.html', { 'projects': projects, 'user': request.user })
     
 @csrf_exempt
 @login_required

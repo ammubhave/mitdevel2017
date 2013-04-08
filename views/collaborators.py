@@ -17,7 +17,7 @@ def collaborators_add(request):
     if 'project_id' not in request.POST:
         return HttpResponse('0')
     project = ProjectEntry.objects.get(id=request.POST['project_id'])
-    collaborators = CollaboratorsEntry.objects.filter(project = project.id, user = request.user)
+    collaborators = CollaboratorsEntry.objects.filter(project = project.id, user = request.user.id)
     if len(collaborators) == 0:
         collaborator = CollaboratorsEntry(project = project,
                         user = request.user)

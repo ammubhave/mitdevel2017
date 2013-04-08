@@ -189,7 +189,9 @@
                         {% if user.is_authenticated %}
 
                         {% for collaborator in collaborators %} 
+                        {% if collaborator.project.id == project.id %}
                         <span class="media-heading"><a target="_blank" href="/members/{{collaborator.user.username}}">{{ collaborator.user.first_name }} {{ collaborator.user.last_name }}</a></span>
+                        {% endif %}
                         {% endfor %}
                         
                          <script>
