@@ -41,6 +41,10 @@ Make sure that the directory is called openshift, or else it will not work local
 
 You can run the website at your local machine too. Get into the root of the repository where the manage.py file resides and type in the shell:
 
+	   python manage.py syncdb
+
+(that sets up the database on your local computer) then:
+
        python manage.py runserver
        
 Now open the web browser and goto http://localhost:8000/ and there you have the website running.
