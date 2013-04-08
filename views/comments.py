@@ -8,7 +8,7 @@ from django.shortcuts import render_to_response
 
 def comments_load(request):
     comments = CommentEntry.objects.filter(root_id=request.GET['id'], parent_id=-1).order_by('-created')
-    return render_to_response('comments_load.html', { 'comments': comments })
+    return render_to_response('comments_load.html', { 'comments': comments, 'user': request.user })
 
 @csrf_exempt
 @login_required
@@ -16,3 +16,10 @@ def comments_add(request):
     comment = CommentEntry(root_id=request.POST['id'], body=request.POST['body'], user=request.user, parent_id=-1)
     comment.save();
     return render_to_response('profile_add_skill.html')
+
+@csrf_exempt
+@login_required
+def comments_delete(request):
+    comment = CommentEntry(id=request.GET['id'], user=request.user, parent_id=-1)
+    comment.delete();
+    return render_to_response('profile_add_skill.html')   

@@ -1,8 +1,24 @@
+      <script>
+                                function comment_delete(id, btn)
+                                {
+                                    jQuery.ajax({
+                                                    url: '/comments/delete',
+                                                    type: 'GET',
+                                                    data: { 'id': id },
+                                                    dataType: 'json'         
+                                    }).done( function() {
+                                        btn.parent().parent().parent().html('Comment Deleted');
+                                    });
+                                    
+                                }
+                   </script>
 {% for comment in comments %} 
 <div class="media">
     <a class="pull-left" href="#" style="display:block;width:64px;">&nbsp;</a>
     <div class="media-body">
         <h4 class="media-heading"><a target="_blank" href="/members/{{comment.user.username}}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a></h4>
+        {% if comment.user.id == user.id %}
+        <span class="pull-right"><button onclick="$(this).attr('disabled', 'disabled'); comment_delete({{comment.id}}, $(this));" style="btn btn-danger pull-right">&cross;</button></span>{% endif %}
         {{ comment.body }}
     </div>
 </div>
