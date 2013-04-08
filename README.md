@@ -43,7 +43,7 @@ You can run the website at your local machine too. Get into the root of the repo
 
 	   python manage.py syncdb
 
-	   (that sets up the database on your local computer) then:
+(that sets up the database on your local computer) then:
 
        python manage.py runserver
        
