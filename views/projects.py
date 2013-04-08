@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect 
 import os
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt

@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models 
 from django.contrib.auth.models import User
 
 #class UserProfile(models.Model):
@@ -104,5 +104,12 @@ class VotingEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.root_id, self.vote)
+
+class CollaboratorsEntry(models.Model):
+    user = models.ForeignKey(User)
+    project = models.ForeignKey(ProjectEntry)
+    
+    def __unicode__(self):
+        return "{0} - {1}".format(self.user.username, self.project)
 
 

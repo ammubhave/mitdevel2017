@@ -1,4 +1,4 @@
-import os
+import os 
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.contrib.auth.models import User
 from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry
