@@ -65,6 +65,12 @@ class ProjectEntry(models.Model):
     user = models.ForeignKey(User)
     project_name = models.TextField()
     project_description = models.TextField()
+
+    # ROLE_CHOICES = (
+    #     (FOUNDER, 'Founder'),
+    #     (COLLABORATOR, 'Collaborator'),
+    # )
+    # role = models.IntegerField(choices=ROLE_CHOICES)
     
     def __unicode__(self):
         return "{0} - {1}".format(self.user.username, self.project_name)

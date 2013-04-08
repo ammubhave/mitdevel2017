@@ -23,7 +23,7 @@
     <h2>{{ member.first_name }} {{ member.last_name }}</h2><br />
       <div class="row-fluid">
         <div class="span3">
-          <p class="text-info">
+          <p class="text-info"> 
             <a href="http://fernandotrujano.com/mit3.php?name={{ member.first_name|urlencode }}+{{ member.last_name|urlencode }}" target="_blank"><img src="http://fernandotrujano.com/mit3.php?name={{ member.first_name|urlencode }}+{{ member.last_name|urlencode }}" alt="{{ member.first_name }} {{member.last_name }}" /></a>
           </p>
         </div><!--/span-->
@@ -48,6 +48,14 @@
                 <a href="http://{{ website.website_url }}" title="{{ website.website_url }}" class="label skill label-{{ website.label_class }}" target="_blank">{{ website.website_url }}</a>
             {% endfor %}  
            </div>    
+
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Projects</a></li></ul>
+           <div class="well" id="skills-list">
+            {% for project in projects %}
+                <a href="/projects" title="{{ project.project_name }}" class="label skill label-{{ project.label_class }}">{{ project.project_name }}</a>
+            {% endfor %}  
+           </div>    
+
         </div><!--/span-->
       </div><!--/row-->
 
