@@ -20,6 +20,6 @@ def comments_add(request):
 @csrf_exempt
 @login_required
 def comments_delete(request):
-    comment = CommentEntry(id=request.GET['id'], user=request.user, parent_id=-1)
+    comment = CommentEntry.objects.get(id=request.GET['id'], user=request.user, parent_id=-1)
     comment.delete();
     return render_to_response('profile_add_skill.html')   
