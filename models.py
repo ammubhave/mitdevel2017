@@ -98,3 +98,5 @@ class VotingEntry(models.Model):
     
     def __unicode__(self):
         return "{0} - {1} - {2}".format(self.user.username, self.root_id, self.vote)
+
+
