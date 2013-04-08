@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block head_extra %}
+<style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 40px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+</style>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+
+    <div class="jumbotron">          
+            
+                <h2>Blog</h2>
+    </div>
+
+    <hr />
+
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                {% for post in posts %}
+                  <li{% if forloop.first %} class="active"{% endif %}><a href="#post{{ post.id }}" data-toggle="tab" onclick=""> {{ post.title }} </a></li>
+                {% endfor %}
+
+                <li><a href="#addnewproj" data-toggle="tab">Add new post...</a></li>
+
+            </ul>
+
+                <div class="tab-content">
+                {% for post in posts %}
+
+                    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="post{{ post.id }}">
+                      <p>
+                        <span class="pull-right">By <a href="/members/{{ post.user.username }}">{{ post.user.first_name }} {{ post.user.last_name }}</a> {{ post.created }}</span>
+
+                        <h4>{{ post.title }}</h4>
+
+                        <div class="body">{{ post.body|linebreaks }}</div>
+                    
+                        </p>
+                    </div>
+       
+                {% endfor %}
+        </div>
+
+    </hr>
+
+    <footer>
+        <p>{% include "footer.html" %}</p>
+    </footer>
+
+</div>
+
+{% endblock %}

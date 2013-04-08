@@ -18,7 +18,6 @@ def projects(request):
         #project.annotate(votes = 0)
         #for vote in votes:
         #    project.votes += vote.vote
-        
        
         project.project_description_safe = project.project_description
         project.project_description = project.project_description.replace('\n', '<br />')

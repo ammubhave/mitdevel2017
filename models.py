@@ -112,4 +112,16 @@ class CollaboratorsEntry(models.Model):
     def __unicode__(self):
         return "{0} - {1}".format(self.user.username, self.project)
 
+class BlogEntry(models.Model):
+    user = models.ForeignKey(User)
+    root_id = models.TextField()
+    
+    title = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    body = models.TextField()
+    
+    def __unicode__(self):
+        return "{0} - {1} - {2}".format(self.user.username, self.title, self.created)
+
 
