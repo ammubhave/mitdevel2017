@@ -5,13 +5,15 @@ from django.views.decorators.csrf import csrf_exempt
 from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry, CommentEntry, VotingEntry
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.db.models import Sum
+
 
 def voting_load(request):
-    votes = VotingEntry.objects.filter(root_id=request.GET['id'])
-    value = 0
-    for vote in votes:
-        value += vote.vote
-    return HttpResponse(str(value))
+    votes = VotingEntry.objects.filter(root_id=request.GET['id']).aggregate(Sum('vote'))
+    #value = 0
+    #for vote in votes:
+    #    value += vote.vote
+    return HttpResponse(str(votes['vote__sum']))
 
 @csrf_exempt
 @login_required
