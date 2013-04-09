@@ -18,6 +18,7 @@ def blog(request):
     
     import re
     for post in posts:
+        post.body = post.body.replace('\n', '<br />')
         post.body = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', post.body)
         post.body = re.sub(r'_(.*?)_', r'<em>\1</em>', post.body)
         post.body = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', post.body)
