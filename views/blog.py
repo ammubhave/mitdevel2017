@@ -7,6 +7,8 @@ from django.shortcuts import render_to_response
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 
+import openshift.lib.formatting_engine as formatting_engine
+
 ''' Display the profile of logged in user. Allow changes
 '''
 
@@ -16,7 +18,5 @@ def blog(request):
     
     import re
     for post in posts:
-        post.body = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', post.body)
-        post.body = re.sub(r'_(.*?)_', r'<em>\1</em>', post.body)
-        post.body = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', post.body)
+        post.body = formatting_engine.render_to_html(post.body)
     return render_to_response('blog.html', { 'posts': posts, 'user': request.user })
