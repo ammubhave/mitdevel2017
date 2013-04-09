@@ -17,11 +17,11 @@ def members(request):
     
     
     # Select 10 random skills and interests to show in filter
-    import random
-    if len(skills) > 10:
-        skills = random.sample(skills, 10)
-    if len(interests) > 10:
-        interests = random.sample(interests, 10)
+    # import random
+    # if len(skills) > 10:
+    #     skills = random.sample(skills, 10) 
+    # if len(interests) > 10:
+    #     interests = random.sample(interests, 10)
     
     # Check the pfilter and pfilter_interest parameter; filter users accordingly
     pfilter = None
