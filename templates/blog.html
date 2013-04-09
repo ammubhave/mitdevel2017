@@ -39,20 +39,86 @@
       .marketing p + h4 {
         margin-top: 28px;
       }
+	
 </style>
 {% endblock %}
 
 {% block main_content %}
 
+ 
+ <!-- I'll replace these with bootstrap divs/navs tomorrow !--> 
+ <style type="text/css"> 
+.box{
+    margin: 20px; padding: 15px;
+    background: #eee;
+    height: 500px;
+}
+
+#navbar{
+    padding-top: 10px;  
+    background: #fff;
+}
+
+.nav {
+	position: fixed; 
+} 
+
+.nav li a{
+    padding: 5px 0; 
+}
+.nav li a:hover{
+    color: #f33 !important;
+    background: none;
+}
+.nav li.active a{
+    color: #f55;
+    text-decoration: underline;
+}
+ 
+ </style>
+ 
+ <body data-spy="scroll" data-target="#navbar">
+
+    <div id="navbar" class="span1 rows">
+        <ul class="nav">
+            <li><a href="#post1">Post 1</a></li>
+            <li><a href="#post2">Post 2</a></li>
+            <li><a href="#post3">Post 3</a></li>
+        </ul>
+    </div>
+    
+ <div class="span9 columns" style="position: right; " > 
+ 
+    <div id="post1" class="box"> 
+        <h1>Post 1</h1>
+        <p> This is a blog</p>
+    </div>
+    
+    <div id="post2" class="box">
+    	<h1>Post 2</h1>
+    </div>
+    
+    <div id="post3" class="box">
+    	<h1>Post 3</h1>
+    </div>
+    
+ </div>
+
+  
+</body>
+
+
+
+    <!-- Blog Stuff
+    
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+</body>
+
 <div class="container-fluid">
 
     <div class="jumbotron">          
             
-                <!-- <h2>Blog</h2> -->
-
-                <h1>Beaver Developers</h1>
-                <h2>Class of 2017</h2>
-                <h6>Beaver Developers website is in no way affiliated to other organisations and is an independent developers group.</h6>
+                <h2>Blog</h2>
     </div>
 
     <hr />
@@ -62,6 +128,9 @@
                 {% for post in posts %}
                   <li{% if forloop.first %} class="active"{% endif %}><a href="#post{{ post.id }}" data-toggle="tab" onclick=""> {{ post.title }} </a></li>
                 {% endfor %}
+
+                <li><a href="#addnewproj" data-toggle="tab">Add new post...</a></li>
+
             </ul>
 
                 <div class="tab-content">
@@ -72,6 +141,7 @@
                         <span class="pull-right">By <a href="/members/{{ post.user.username }}">{{ post.user.first_name }} {{ post.user.last_name }}</a> {{ post.created }}</span>
 
                         <h4>{{ post.title }}</h4>
+                         
 
                         <div class="body">{{ post.body|linebreaks }}</div>
                     
@@ -88,5 +158,7 @@
     </footer>
 
 </div>
+
+--> 
 
 {% endblock %}
