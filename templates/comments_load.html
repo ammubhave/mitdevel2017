@@ -17,6 +17,7 @@
     <a class="pull-left" href="#" style="display:block;width:64px;">&nbsp;</a>
     <div class="media-body">
         <h4 class="media-heading"><a target="_blank" href="/members/{{comment.user.username}}">{{ comment.user.first_name }} {{ comment.user.last_name }}</a></h4>
+        <h6>{{comment.created}}</h6>
         {% if comment.user.id == user.id %}
         <span class="pull-right"><button onclick="$(this).attr('disabled', 'disabled'); comment_delete({{comment.id}}, $(this));" style="btn btn-danger pull-right">&cross;</button></span>{% endif %}
         {{ comment.body }}
