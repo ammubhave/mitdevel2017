@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 from openshift.models import SkillEntry, InterestEntry, WebsiteEntry, ProjectEntry, VotingEntry, CollaboratorsEntry
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-import openshift.lib.formatting_engine as formatting_engine
 
 def projects(request):
     projects = ProjectEntry.objects.all()
@@ -21,7 +20,10 @@ def projects(request):
         #    project.votes += vote.vote
        
         project.project_description_safe = project.project_description
-        project.project_description = formatting_engine.render_to_html(project.project_description)
+        project.project_description = project.project_description.replace('\n', '<br />')
+        project.project_description = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', project.project_description)
+        project.project_description = re.sub(r'_(.*?)_', r'<em>\1</em>', project.project_description)
+        project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
     
     
     
