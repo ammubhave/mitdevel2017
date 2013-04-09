@@ -58,9 +58,6 @@
                 {% for post in posts %}
                   <li{% if forloop.first %} class="active"{% endif %}><a href="#post{{ post.id }}" data-toggle="tab" onclick=""> {{ post.title }} </a></li>
                 {% endfor %}
-
-                <li><a href="#addnewproj" data-toggle="tab">Add new post...</a></li>
-
             </ul>
 
                 <div class="tab-content">

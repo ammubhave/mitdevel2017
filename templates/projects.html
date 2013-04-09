@@ -186,36 +186,18 @@
 
                     <hr /><h4>Collaborators</h4>
                     <div class="well">
-                        {% if user.is_authenticated %}
-
-                        {% for collaborator in collaborators %} 
-                          {% if collaborator.project.id == project.id %}
-                            <span class="media-heading"><a target="_blank" href="/members/{{collaborator.user.username}}">{{ collaborator.user.first_name }} {{ collaborator.user.last_name }}</a></span>
-                          {% endif %}
-                        {% endfor %}
-                        
-                         <script>
-                              function addcollaborators{{project.id}}()
+                        <div id="collabproj{{project.id}}"></div>
+                        <script>
+                              function refresh_collab{{project.id}}()
                               {
-                                  $('#newcollaboratorbtn{{project.id}}').attr('disabled', 'disabled');
-                                  jQuery.ajax({
-                                                  url: '/collaborators/add',
-                                                  type: 'POST',
-                                                  data: { 'project_id': '{{ project.id }}' },
-                                                  dataType: 'json'         
-                                  }).done( function() {
-                                    $('#newcollaboratorbtn{{project.id}}').removeAttr('disabled');
-                                  });   
+                                 $('#collabproj{{project.id}}').load('/collaborators/load?project_id={{project.id|urlencode}}');
                               }
-                          </script>
-                          
-
-                          <button id="newcollaboratorbtn{{project.id}}" onclick="addcollaborators{{project.id}}()" class="btn btn-primary pull-right">Join</button>
+                             refresh_collab{{project.id}}();
+                        </script>
 
                         
-                        {% else %}
-                            You need to <a href="/accounts/login?next=/projects">login</a>.
-                        {% endif %}
+                        
+                          
                       </div>
                     <hr />
 

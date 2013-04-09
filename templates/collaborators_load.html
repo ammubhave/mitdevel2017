@@ -1,0 +1,48 @@
+
+{% for collaborator in collaborators %} 
+    <span class="media-heading"><a target="_blank" href="/members/{{collaborator.user.username}}">{{ collaborator.user.first_name }} {{ collaborator.user.last_name }}</a></span>
+   <br />
+{% endfor %}
+
+{% if user.is_authenticated %}
+    {% if user.is_collab %}    
+        <button id="newcollaboratorbtn{{project_id}}" onclick="deletecollaborators{{project_id}}()" class="btn btn-danger pull-right">Unjoin</button>          
+    {% else %}
+        
+        <button id="newcollaboratorbtn{{project_id}}" onclick="addcollaborators{{project_id}}()" class="btn btn-primary pull-right">Join</button>
+        
+    {% endif %}
+                            <br />
+{% else %}
+                         <br /><br />   You need to <a href="/accounts/login?next=/projects">login</a>.
+{% endif %}
+                        
+                        <script>
+                        function addcollaborators{{project_id}}()
+                              {
+                                  $('#newcollaboratorbtn{{project_id}}').attr('disabled', 'disabled');
+                                  jQuery.ajax({
+                                                  url: '/collaborators/add',
+                                                  type: 'POST',
+                                                  data: { 'project_id': '{{ project_id }}' },
+                                                  dataType: 'json'         
+                                  }).done( function() {
+                                   
+                                   
+                                    refresh_collab{{project_id}}();
+                                  });   
+                              }
+                        function deletecollaborators{{project_id}}()
+                              {
+                                  $('#newcollaboratorbtn{{project_id}}').attr('disabled', 'disabled');
+                                  jQuery.ajax({
+                                                  url: '/collaborators/delete',
+                                                  type: 'POST',
+                                                  data: { 'project_id': '{{ project_id }}' },
+                                                  dataType: 'json'         
+                                  }).done( function() {
+                                    
+                                    refresh_collab{{project_id}}();
+                                  });   
+                              }
+                        </script>

@@ -4,7 +4,7 @@ from projects import projects
 from projects import projects_add
 from projects import projects_delete
 from projects import projects_update
-from collaborators import collaborators
+from collaborators import collaborators_load
 from collaborators import collaborators_add
 from collaborators import collaborators_delete
 from profile import profile

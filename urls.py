@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^comments/add$', 'openshift.views.comments_add', name='comments_add'),
     url(r'^comments/delete$', 'openshift.views.comments_delete', name='comments_delete'),
 
-    url(r'^collaborators/load$', 'openshift.views.collaborators', name='collaborators'),
+    url(r'^collaborators/load$', 'openshift.views.collaborators_load', name='collaborators_load'),
     url(r'^collaborators/add$', 'openshift.views.collaborators_add', name='collaborators_add'),
     url(r'^collaborators/delete$', 'openshift.views.collaborators_delete', name='collaborators_delete'),
 

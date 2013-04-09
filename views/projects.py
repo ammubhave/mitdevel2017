@@ -25,6 +25,8 @@ def projects(request):
         project.project_description = re.sub(r'_(.*?)_', r'<em>\1</em>', project.project_description)
         project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
     
+    
+    
     #projects = projects.order_by('votes')
     return render_to_response('projects.html', { 'projects': projects, 'user': request.user, 'collaborators': collaborators })
     #return render_to_response('projects.html', { 'projects': projects, 'user': request.user })
