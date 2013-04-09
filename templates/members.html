@@ -56,7 +56,7 @@
          <span title="{{ pfilter.skill_name|title }}" class="btn btn-success">{{ pfilter.skill_name|title }}</span>
         {% endif %}
         {% for skill in skills %}
-          {% if forloop.counter < 10 %}
+          {% if forloop.counter < 7 %}
              <span title="{{ skill|title }}" class="btn btn-info"><a href="members?filter={{ skill|urlencode}}" style="color: white;text-decoration:none">{{ skill|title }}</a></span>
           {% endif %}
         {% endfor %}
@@ -68,7 +68,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu">
             {% for skill in skills %}
-              {% if forloop.counter >= 10 %}
+              {% if forloop.counter >= 7 %}
                 <li><a tabindex="-1" href="members?filter_skill={{ skill|urlencode}}">{{ skill|title }}</a></li>
               {% endif %}
             {% endfor %}
@@ -83,7 +83,7 @@
          <span title="{{ pfilter_interest.interest_name|title }}" class="btn btn-success">{{ pfilter_interest.interest_name|title }}</span>
         {% endif %}
         {% for interest in interests %}     
-          {% if forloop.counter < 10 %} 
+          {% if forloop.counter < 7 %} 
             <span title="{{ interest|title }}" class="btn btn-info"><a href="members?filter_interest={{ interest|urlencode}}" style="color: white;text-decoration:none">{{ interest|title }}</a></span>
           {% endif %}
         {% endfor %}
@@ -95,7 +95,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu">
             {% for interest in interests %}
-              {% if forloop.counter >= 10 %}
+              {% if forloop.counter >= 7 %}
                 <li><a tabindex="-1" href="members?filter_interest={{ interest|urlencode}}">{{ interest|title }}</a></li>
               {% endif %}
             {% endfor %}
