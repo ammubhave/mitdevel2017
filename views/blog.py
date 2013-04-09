@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 ''' Display the profile of logged in user. Allow changes
 '''
-@login_required
+
 def blog(request): 
     #posts = CommentEntry.objects.filter(root_id=request.GET['id'], parent_id=-1).order_by('-created')
     posts = BlogEntry.objects.all().order_by('-created')
