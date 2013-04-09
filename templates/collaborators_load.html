@@ -2,6 +2,8 @@
 {% for collaborator in collaborators %} 
     <span class="media-heading"><a target="_blank" href="/members/{{collaborator.user.username}}">{{ collaborator.user.first_name }} {{ collaborator.user.last_name }}</a></span>
    <br />
+{% empty %}
+    No collaborators
 {% endfor %}
 
 {% if user.is_authenticated %}
