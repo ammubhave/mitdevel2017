@@ -20,10 +20,7 @@ def projects(request):
         #    project.votes += vote.vote
        
         project.project_description_safe = project.project_description
-        project.project_description = project.project_description.replace('\n', '<br />')
-        project.project_description = re.sub(r'\*(.*?)\*', r'<strong>\1</strong>', project.project_description)
-        project.project_description = re.sub(r'_(.*?)_', r'<em>\1</em>', project.project_description)
-        project.project_description = re.sub(r'\[\[(.*?)\|(.*?)\]\]', r'<a target="_blank" href="\1">\2</a>', project.project_description)
+        project.project_description = render_to_html(project.project_description)
     
     
     
@@ -75,3 +72,13 @@ def projects_delete(request):
         project.delete()
     
     return redirect('/projects')
+    
+    
+import re
+def render_to_html(text):
+    text = text.replace('\n', '<br />')
+    text = re.sub(r"'''(.*?)'''", r"<strong>\1</strong>", text)
+    text = re.sub(r"''(.*?)''", r"<em>\1</em>", text)
+    text = re.sub(r"\[\[(.*?)\|(.*?)\]\]", r"<a target='_blank' href='\1'>\2</a>", text)
+    return text
+    
