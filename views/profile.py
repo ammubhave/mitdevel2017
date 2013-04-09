@@ -23,7 +23,7 @@ def profile(request):
             interest.label_class = 'success'
         elif interest.level == InterestEntry.VERY_INTERESTED:
             interest.level_text = 'Very Interested'
-            interest.label_class = 'important'
+            interest.label_class = 'important'           
             
     for skill in skills:
         skill.label_class = 'default'

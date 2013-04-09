@@ -14,6 +14,8 @@ def members(request):
     skills = set(SkillEntry.objects.all().values_list('skill_name', flat=True))
     interests = set(InterestEntry.objects.all().values_list('interest_name', flat=True))
     
+    
+    
     # Select 10 random skills and interests to show in filter
     import random
     if len(skills) > 10:

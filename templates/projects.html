@@ -121,6 +121,25 @@
                 {% endfor %}
                   <li><a href="#addnewproj" data-toggle="tab">Add new project...</a></li>
               </ul>
+              
+              <script>
+                 function voteproject(project_id, val)
+                 {
+                            $('#upvoteproject' + project_id).attr('disabled', 'disabled');
+                            $('#downvoteproject' + project_id).attr('disabled', 'disabled');
+                            jQuery.ajax({
+                                                    url: '/voting/vote',
+                                                    type: 'POST',
+                                                    data: { 'id': 'p' + project_id, 'vote': val },
+                                                    dataType: 'json'         
+                                    }).done( function() {
+                                        $('#votesproj' + project_id).load('/voting/load?id=p' + project_id);
+                                        $('#upvoteproject' + project_id).removeAttr('disabled');
+                                        $('#downvoteproject' + project_id).removeAttr('disabled');
+                                    });
+                 }
+              </script>
+              
               <div class="tab-content">
                 {% for project in projects %}
 
@@ -133,26 +152,11 @@
                     {% if project.user == user %}<button onclick="$('#projdesc{{project.id}}').hide(); $('#projedit{{project.id}}').css('display', '');" class="btn">Edit</button>&nbsp;<a href="/projects/delete?id={{ project.id }}" class="btn btn-danger">Delete</a>{% endif %}
                     &nbsp;&nbsp;<span id="votesproj{{project.id}}"></span> Vote(s)
                     
-                    <script>
-                        function voteproject{{project.id}}(val)
-                        {
-                            $('#upvoteproject{{project.id}}').attr('disabled', 'disabled');
-                            $('#downvoteproject{{project.id}}').attr('disabled', 'disabled');
-                            jQuery.ajax({
-                                                    url: '/voting/vote',
-                                                    type: 'POST',
-                                                    data: { 'id': 'p{{ project.id }}', 'vote': val },
-                                                    dataType: 'json'         
-                                    }).done( function() {
-                                        $('#votesproj{{project.id}}').load('/voting/load?id=p{{project.id}}');
-                                        $('#upvoteproject{{project.id}}').removeAttr('disabled');
-                                        $('#downvoteproject{{project.id}}').removeAttr('disabled');
-                                    });
-                        }
-                    </script>
-                    &nbsp;<a href="#" id="upvoteproject{{project.id}}" onclick="voteproject{{project.id}}(1)">+1</a>
-                    &nbsp;<a href="#" id="downvoteproject{{project.id}}" onclick="voteproject{{project.id}}(-1)">-1</a>
-                    
+                    {% if user.is_authenticated %}
+                    &nbsp;<a href="#" id="upvoteproject{{project.id}}" onclick="voteproject('{{project.id}}', 1)">+1</a>
+                    &nbsp;<a href="#" id="downvoteproject{{project.id}}" onclick="voteproject('{{project.id}}', -1)">-1</a>
+                   
+                    {% endif %}
                     
                     
                     

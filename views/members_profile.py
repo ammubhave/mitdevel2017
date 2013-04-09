@@ -13,7 +13,10 @@ def members_profile(request, username):
     websites = WebsiteEntry.objects.filter(user=member.id)
     projects = ProjectEntry.objects.filter(user=member.id)
 
+    interests_card = []
+            
     # TODO: The code is redundant, too many places same code is written. Use a better method to lookup.
+    i = 1
     for interest in interests:
         interest.label_class = 'default'
         if interest.level == InterestEntry.NOT_VERY_INTERESTED:
@@ -25,6 +28,9 @@ def members_profile(request, username):
         elif interest.level == InterestEntry.VERY_INTERESTED:
             interest.level_text = 'Very Interested'
             interest.label_class = 'important'
+            interest.index = i
+            i += 1
+            interests_card.append(interest)
         
     for skill in skills:
         skill.label_class = 'default'
@@ -59,4 +65,4 @@ def members_profile(request, username):
         #     project.role_text = 'Collaborator'
         #     project.label_class = 'success'
         
-    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites, 'projects': projects, 'user': request.user } )
+    return render(request, 'members_profile.html', { 'member': member, 'skills': skills, 'interests': interests, 'websites': websites, 'projects': projects, 'user': request.user, 'interests_card': interests_card } )
