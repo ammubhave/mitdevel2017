@@ -4,7 +4,7 @@
 
 {% block head_extra %}
 
-<style type="text/css">
+<style type="text/css"> 
       body {
         padding-top: 40px;
         padding-bottom: 40px;
@@ -49,23 +49,62 @@
         <h2>Members</h2>
         <p class="lead"></p>
       </div>
+
       <div>
-      Filter by Skill: 
-      {% if pfilter != None %}
-       <span title="{{ pfilter.skill_name|title }}" class="label skill label-success">{{ pfilter.skill_name|title }}</span>
-      {% endif %}
-      {% for skill in skills %}
-       <span title="{{ skill|title }}" class="label skill label-info"><a href="members?filter={{ skill|urlencode}}" style="color: white;text-decoration:none">{{ skill|title }}</a></span>
-      {% endfor %}<br /><br />
-      
-      Filter by Interest: 
-      {% if pfilter_interest != None %}
-       <span title="{{ pfilter_interest.interest_name|title }}" class="label skill label-success">{{ pfilter_interest.interest_name|title }}</span>
-      {% endif %}
-      {% for interest in interests %}
-       <span title="{{ interest|title }}" class="label skill label-info"><a href="members?filter_interest={{ interest|urlencode}}" style="color: white;text-decoration:none">{{ interest|title }}</a></span>
-      {% endfor %}
+        Filter by Skill: 
+        {% if pfilter != None %}
+         <span title="{{ pfilter.skill_name|title }}" class="btn btn-success">{{ pfilter.skill_name|title }}</span>
+        {% endif %}
+        {% for skill in skills %}
+          {% if forloop.counter < 10 %}
+             <span title="{{ skill|title }}" class="btn btn-info"><a href="members?filter={{ skill|urlencode}}" style="color: white;text-decoration:none">{{ skill|title }}</a></span>
+          {% endif %}
+        {% endfor %}
+
+        <div class="btn-group">
+          <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+            More
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu">
+            {% for skill in skills %}
+              {% if forloop.counter >= 10 %}
+                <li><a tabindex="-1" href="members?filter_skill={{ skill|urlencode}}">{{ skill|title }}</a></li>
+              {% endif %}
+            {% endfor %}
+
+          </ul>
+        </div>
+
+        <br /><br />
+        
+        Filter by Interest: 
+        {% if pfilter_interest != None %}
+         <span title="{{ pfilter_interest.interest_name|title }}" class="btn btn-success">{{ pfilter_interest.interest_name|title }}</span>
+        {% endif %}
+        {% for interest in interests %}     
+          {% if forloop.counter < 10 %} 
+            <span title="{{ interest|title }}" class="btn btn-info"><a href="members?filter_interest={{ interest|urlencode}}" style="color: white;text-decoration:none">{{ interest|title }}</a></span>
+          {% endif %}
+        {% endfor %}
+
+        <div class="btn-group">
+          <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+            More
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu">
+            {% for interest in interests %}
+              {% if forloop.counter >= 10 %}
+                <li><a tabindex="-1" href="members?filter_interest={{ interest|urlencode}}">{{ interest|title }}</a></li>
+              {% endif %}
+            {% endfor %}
+
+          </ul>
+        </div>
+
       </div>
+
  <br />
      <div class="row">
         {% regroup users by index as users_list %}
