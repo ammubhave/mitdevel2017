@@ -69,7 +69,7 @@
           <ul class="dropdown-menu dropdown-menu">
             {% for skill in skills %}
               {% if forloop.counter >= 7 %}
-                <li><a tabindex="-1" href="members?filter_skill={{ skill|urlencode}}">{{ skill|title }}</a></li>
+                <li><a tabindex="-1" href="members?filter={{ skill|urlencode}}">{{ skill|title }}</a></li>
               {% endif %}
             {% endfor %}
 
