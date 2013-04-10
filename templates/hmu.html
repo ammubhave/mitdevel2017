@@ -56,7 +56,7 @@
                     var interest_name = $(ele).parent().children(0)
                                        
                     $(ele).parent().after(
-                        $('<span title="' + interest_name.val() + '" class="label skill label-success"><span>' + interest_name.val() + '</span> &nbsp;<button onclick="remove_interest(this)" style="float: none" class="close">&times;</button></span>')
+                        $('<span title="' + interest_name.val() + '" class="label skill label-success"><span>' + interest_name.val() + '</span> &nbsp;<button onclick="remove_interest_new(this)" style="float: none" class="close">&times;</button></span>')
                     );
                                       
                     $(ele).parent().remove();
@@ -75,7 +75,7 @@
                     var ints = $('#int_list').children();
                     for (var i=0;i<ints.length-1;i++)
                     {
-                        link += '&i' + (i+1).toString() + '=' + encodeURIComponent($(ints[i]).children()[0].innerText);
+                        link += '&i' + (i+1).toString() + '=' + encodeURIComponent($($(ints[i]).children()[0]).text());
                     }             
                    
                     
