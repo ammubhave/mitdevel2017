@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Create my HMU card{% endblock %}
+
+{% block head_extra %}
+<style>
+   .skill
+   {
+     padding: 2px 8px;
+     margin-top: 10px;
+     line-height: 25px;
+     margin-right: 10px;
+   }
+</style>
+{% endblock %}
+
+{% block main_content %}
+
+
+
+    <div class="container-fluid">
+    <h2>Create my HMU card!</h2><br />
+      <div class="row-fluid">
+        <div class="span3">
+          <p class="text-info">
+            <a id="aCard" href="http://fernandotrujano.com/mit3.php?name={{ member.first_name|urlencode }}+{{ member.last_name|urlencode }}" target="_blank"><img id="imgCard" src="http://fernandotrujano.com/mit3.php?name={{ member.first_name|urlencode }}+{{ member.last_name|urlencode }}{% for interest in interests_card %}&i{{interest.index}}={{interest.interest_name|urlencode}}{% endfor %}" alt="{{ member.first_name }} {{member.last_name }}" /></a>
+          </p>
+        </div><!--/span-->
+        <div class="span9">
+           
+           <label>Name</label>
+           <input  id="txtName" type="text" placeholder="What is your name?">
+           <br />
+           Class of 2017
+           <br />
+           <br />
+           <ul class="nav nav-tabs"><li class="active"><a name="skills">Interests (e.g. Swimming, Dreaming, etc.)</a></li></ul>
+           <div class="well" id="interests-list">
+             <div id="int_list">      
+                <span id="addinterest" title="Add interest" class="label label-default" style="line-height: 25px;">&nbsp;&nbsp;Add interest&nbsp;&nbsp;</span>
+             </div>
+             <script>
+                $('#addinterest').click( function () {
+                    $('#addinterest').before(
+                        $('<span>').attr('class', 'label skill')
+                            .append('<input type="text" placeholder="Interest" style="margin-bottom:0"></input>') 
+                            
+                            .append('<a class="btn btn-primary" onclick="add_interest(this)" href="#"><i class="icon-ok icon-white"></i></a>')
+                            .append('<a class="btn" href="#" onclick="remove_interest_new(this)">&times;</a>')
+                            
+                        
+                    );
+                });
+                function add_interest(ele)
+                {
+                    var interest_name = $(ele).parent().children(0)
+                                       
+                    $(ele).parent().after(
+                        $('<span title="' + interest_name.val() + '" class="label skill label-success"><span>' + interest_name.val() + '</span> &nbsp;<button onclick="remove_interest(this)" style="float: none" class="close">&times;</button></span>')
+                    );
+                                      
+                    $(ele).parent().remove();
+                    refresh_card();
+                }
+                function remove_interest_new(ele)
+                {
+                    $(ele).parent().remove();
+                }
+                
+                function refresh_card()
+                {
+                    var link = "http://fernandotrujano.com/mit3.php?name=";
+                    link += encodeURIComponent($('#txtName').val());
+
+                    var ints = $('#int_list').children();
+                    for (var i=0;i<ints.length-1;i++)
+                    {
+                        link += '&i' + (i+1).toString() + '=' + encodeURIComponent($(ints[i]).children()[0].innerText);
+                    }             
+                   
+                    
+                    $('#imgCard').attr('src', link);
+                    $('#aCard').attr('src', link);                    
+                }
+                
+                $('#txtName').blur( refresh_card );
+             </script>
+           </div>      
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr />
+
+      <footer>
+        <p>&copy; </p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+{% endblock %}

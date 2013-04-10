@@ -19,3 +19,5 @@ from blog import blog
 
 from comments import comments_load, comments_add, comments_delete
 from voting import voting_load, voting_vote
+
+from hmu import hmu

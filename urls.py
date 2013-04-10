@@ -44,6 +44,8 @@ urlpatterns = patterns('',
     url(r'^accounts/profile/websites/add$', 'openshift.views.add_website', name='add_website'),
     url(r'^accounts/profile/websites/remove$', 'openshift.views.remove_website', name='remove_website'),    
     
+    url(r'^hmu/?$', 'openshift.views.hmu', name='hmu'),
+    
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
