@@ -39,16 +39,26 @@
       .marketing p + h4 {
         margin-top: 28px;
       }
+	  .affix {
+    position: fixed; 
+    top: 75px; 
+    left: 20pxpx;
+}
+
 </style>
 {% endblock %}
 
 {% block main_content %}
 
+                
+
+
+ <body data-spy="scroll"   data-target="#navbar" >
 <div class="container-fluid">
 
     <div class="jumbotron">          
             
-                <!-- <h2>Blog</h2> -->
+                <!-- <h2>Blog</h2> --> 
 
                 <h1>Beaver Developers</h1>
                 <h2>Class of 2017</h2>
@@ -56,28 +66,30 @@
     </div>
 
     <hr />
-
-        <div class="tabbable tabs-left">
-            <ul class="nav nav-tabs">
+<div class="span1"  > 
+        <div  id="navbar" class="tabbable tabs-left" data-spy="affix" data-offset-top="200" data-offset-bottom="100"  >
+            <ul   class="nav nav-tabs " >
                 {% for post in posts %}
-                  <li{% if forloop.first %} class="active"{% endif %}><a href="#post{{ post.id }}" data-toggle="tab" onclick=""> {{ post.title }} </a></li>
+                  <li{% if forloop.first %} class="active"{% endif %}><a href="#post{{ post.id }}" data-toggle="" onclick="#post{{ post.id }}"> {{ post.title }} </a></li>
+                  
                 {% endfor %}
             </ul>
-
-                <div class="tab-content">
+</div>
+</div> 
+                <div style=" padding-left: 70px; "class="tab-content">
                 {% for post in posts %}
 
-                    <div class="tab-pane {% if forloop.first %}active{% endif %}" id="post{{ post.id }}">
+                    <div   class="" id="post{{ post.id }}">
                       <p>
                         <span class="pull-right">By <a href="/members/{{ post.user.username }}">{{ post.user.first_name }} {{ post.user.last_name }}</a> {{ post.created }}</span>
 
-                        <h4>{{ post.title }}</h4>
+                        <h4>{{ post.title }}</h4> 
 
                         <div class="body">{{ post.body|safe }}</div>
                     
                         </p>
                     </div>
-       
+       <hr/> 
                 {% endfor %}
         </div>
 
